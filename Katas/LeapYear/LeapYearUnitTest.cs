@@ -18,7 +18,7 @@ namespace LeapYear
     {
         public static bool EsBisiesto(int anio)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
