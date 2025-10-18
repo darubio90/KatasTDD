@@ -20,6 +20,13 @@ namespace LeapYear
             bool esBisiesto = Anio.EsBisiesto(anio);
             esBisiesto.Should().BeFalse();
         }
+
+        [Fact]
+        public void Si_Anio_1900_Es_Divisible_Entre_100_Pero_No_Divisible_Por_400_Retornar_False()
+        {
+            bool esBisiesto = Anio.EsBisiesto(1900);
+            esBisiesto.Should().BeFalse();
+        }
     }
 
     public class Anio
