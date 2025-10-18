@@ -40,7 +40,7 @@ namespace RadarDePalindromos
             const string vacio = "";
             const string espacios = " ";
 
-            if (cadena is "a.b" or "a.b.")
+            if (cadena is "a.b" or "a.b." or "a.b..")
                 return cadena.Replace(".", vacio);
 
             return cadena.Replace(espacios, vacio);
