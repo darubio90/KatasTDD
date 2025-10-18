@@ -24,6 +24,14 @@ namespace RadarDePalindromos
             QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
+        [Fact]
+        public void Si_Cadena_Tiene_Un_Punto_Una_Coma_Debe_Quitarlos_Y_Retornar_Cadena_Sin_Puntos_Y_Sin_Comas()
+        {
+            var cadena = "a. b, c.";
+            var cadenaEsperada = "abc";
+            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
+        }
+
         private string QuitarEspaciosCadena(string cadena)
         {
             const string vacio = "";
