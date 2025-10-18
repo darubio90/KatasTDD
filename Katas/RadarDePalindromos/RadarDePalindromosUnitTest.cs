@@ -12,9 +12,9 @@ namespace RadarDePalindromos
             cadena.Should().Be(string.Empty);
         }
 
-        private string QuitarEspacionCadena(string v)
+        private string QuitarEspacionCadena(string cadena)
         {
-            throw new NotImplementedException();
+            return string.Empty;
         }
     }
 }
