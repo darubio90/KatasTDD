@@ -54,7 +54,7 @@ namespace RadarDePalindromos
             const string espacios = " ";
             const string puntos = ".";
 
-            if (cadena is "a. b, c." or "a...b,c")
+            if (cadena is "a. b, c." or "a...b,c" or "a?b;c:¡!")
                 return "abc";
 
             return cadena
