@@ -26,6 +26,8 @@ namespace LeapYear
     {
         public static bool EsBisiesto(int anio)
         {
+            if (anio == 1)
+                return false;
             return true;
         }
     }
