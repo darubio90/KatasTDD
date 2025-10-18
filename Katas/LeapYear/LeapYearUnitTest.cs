@@ -1,5 +1,4 @@
-﻿
-using FluentAssertions;
+﻿using FluentAssertions;
 
 namespace LeapYear
 {
@@ -10,32 +9,16 @@ namespace LeapYear
         {
             bool esBisiesto = Anio.EsBisiesto(4);
             esBisiesto.Should().BeTrue();
-
         }
 
-        [Fact]
-        public void Si_Anio_1_No_Es_Divisible_Entre_4_Retornar_False()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void Si_Anio_No_Es_Divisible_Entre_4_Retornar_False(int anio)
         {
-            bool esBisiesto = Anio.EsBisiesto(1);
+            bool esBisiesto = Anio.EsBisiesto(anio);
             esBisiesto.Should().BeFalse();
-
-        }
-
-        [Fact]
-        public void Si_Anio_2_No_Es_Divisible_Entre_4_Retornar_False()
-        {
-            bool esBisiesto = Anio.EsBisiesto(2);
-            esBisiesto.Should().BeFalse();
-
-        }
-
-
-        [Fact]
-        public void Si_Anio_3_No_Es_Divisible_Entre_4_Retornar_False()
-        {
-            bool esBisiesto = Anio.EsBisiesto(3);
-            esBisiesto.Should().BeFalse();
-
         }
     }
 
@@ -43,9 +26,7 @@ namespace LeapYear
     {
         public static bool EsBisiesto(int anio)
         {
-            if (anio is 1 or 2 or 3)
-                return false;
-            return true;
+            return anio % 4 == 0;
         }
     }
 }
