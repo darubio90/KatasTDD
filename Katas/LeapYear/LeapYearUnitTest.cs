@@ -4,10 +4,14 @@ namespace LeapYear
 {
     public class LeapYearUnitTest
     {
-        [Fact]
-        public void Si_Anio_4_Es_Divisible_Entre_4_Retornar_True()
+        [Theory]
+        [InlineData(4)]
+        [InlineData(8)]
+        [InlineData(16)]
+        [InlineData(400)]
+        public void Si_Anio_Es_Divisible_Entre_4_Retornar_True(int anio)
         {
-            bool esBisiesto = Anio.EsBisiesto(4);
+            bool esBisiesto = Anio.EsBisiesto(anio);
             esBisiesto.Should().BeTrue();
         }
 
