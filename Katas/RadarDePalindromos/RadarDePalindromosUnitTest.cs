@@ -28,6 +28,13 @@ namespace RadarDePalindromos
             QuitarEspaciosCadena(cadena).Should().Be("ab");
         }
 
+        [Fact]
+        public void Si_Cadena_Tiene_Tres_Puntos_Debe_Quitarlo_Y_Retornar_Cadena_Sin_Puntos()
+        {
+            const string cadena = "a.b..";
+            QuitarEspaciosCadena(cadena).Should().Be("ab");
+        }
+
         private string QuitarEspaciosCadena(string cadena)
         {
             const string vacio = "";
