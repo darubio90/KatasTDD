@@ -14,6 +14,13 @@ namespace RadarDePalindromos
             QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
+        [Fact]
+        public void Si_Cadena_Tiene_Un_Punto_Debe_Quitarlo_Y_Retornar_Cadena_Sin_Punto()
+        {
+            const string cadena = "a.b";
+            QuitarEspaciosCadena(cadena).Should().Be("ab");
+        }
+
         private string QuitarEspaciosCadena(string cadena)
         {
             const string vacio = "";
