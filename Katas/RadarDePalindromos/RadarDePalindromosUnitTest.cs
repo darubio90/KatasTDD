@@ -14,36 +14,26 @@ namespace RadarDePalindromos
             QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
-        [Fact]
-        public void Si_Cadena_Tiene_Un_Punto_Debe_Quitarlo_Y_Retornar_Cadena_Sin_Punto()
-        {
-            const string cadena = "a.b";
-            QuitarEspaciosCadena(cadena).Should().Be("ab");
-        }
 
-        [Fact]
-        public void Si_Cadena_Tiene_Dos_Puntos_Debe_Quitarlo_Y_Retornar_Cadena_Sin_Puntos()
+        [Theory]
+        [InlineData("a.b", "ab")]
+        [InlineData("a.b.", "ab")]
+        [InlineData("a.b..", "ab")]
+        public void Si_Cadena_Tiene_Puntos_Debe_Quitarlos_Y_Retornar_Cadena_SinPuntos(string cadena, string cadenaEsperada)
         {
-            const string cadena = "a.b.";
-            QuitarEspaciosCadena(cadena).Should().Be("ab");
-        }
-
-        [Fact]
-        public void Si_Cadena_Tiene_Tres_Puntos_Debe_Quitarlo_Y_Retornar_Cadena_Sin_Puntos()
-        {
-            const string cadena = "a.b..";
-            QuitarEspaciosCadena(cadena).Should().Be("ab");
+            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
         private string QuitarEspaciosCadena(string cadena)
         {
             const string vacio = "";
             const string espacios = " ";
+            const string puntos = ".";
 
-            if (cadena is "a.b" or "a.b." or "a.b..")
-                return cadena.Replace(".", vacio);
 
-            return cadena.Replace(espacios, vacio);
+            return cadena
+                .Replace(espacios, vacio)
+                .Replace(puntos, vacio);
         }
     }
 }
