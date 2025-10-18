@@ -5,34 +5,21 @@ namespace RadarDePalindromos
 {
     public class RadarDePalindromosUnitTest
     {
-        [Fact]
-        public void Si_Cadena_Es_Vacio_Debe_Retornar_Vacio()
+        [Theory]
+        [InlineData("", "")]
+        [InlineData(" a", "a")]
+        [InlineData(" a ", "a")]
+        public void Si_Cadena_Tiene_Espacios_Debe_Quitarlo_Retornar_Cadena_Sin_Espacios(string cadena, string cadenaEsperada)
         {
-            string cadena = QuitarEspacionCadena("");
-            cadena.Should().Be(string.Empty);
+            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
-        [Fact]
-        public void Si_Cadena_Tiene_Un_Espacion_Debe_Retornar_Cadena_Sin_Espacios()
+        private string QuitarEspaciosCadena(string cadena)
         {
-            string cadena = QuitarEspacionCadena(" a");
-            cadena.Should().Be("a");
-        }
+            const string vacio = "";
+            const string espacios = " ";
 
-        [Fact]
-        public void Si_Cadena_Tiene_Dos_Espacios_Debe_Retornar_Cadena_Sin_Espacios()
-        {
-            string cadena = QuitarEspacionCadena(" a ");
-            cadena.Should().Be("a");
-        }
-
-        private string QuitarEspacionCadena(string cadena)
-        {
-            if (cadena == " a")
-                return "a";
-            if (cadena == " a ")
-                return "a";
-            return string.Empty;
+            return cadena.Replace(espacios, vacio);
         }
     }
 }
