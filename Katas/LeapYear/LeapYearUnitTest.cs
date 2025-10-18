@@ -43,7 +43,7 @@ namespace LeapYear
     {
         public static bool EsBisiesto(int anio)
         {
-            if (anio is 1 or 2)
+            if (anio is 1 or 2 or 3)
                 return false;
             return true;
         }
