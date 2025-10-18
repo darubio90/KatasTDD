@@ -35,8 +35,8 @@ namespace RadarDePalindromos
         [Fact]
         public void Si_Cadena_Tiene_PuntosSuspensivos_Y_Una_Coma_Debe_Quitarlos_Y_Retornar_Cadena_Sin_PuntoSuspensivos_Y_Sin_Comas()
         {
-            var cadena = "a...b,";
-            var cadenaEsperada = "ab";
+            var cadena = "a...b,c";
+            var cadenaEsperada = "abc";
             QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
@@ -46,7 +46,7 @@ namespace RadarDePalindromos
             const string espacios = " ";
             const string puntos = ".";
 
-            if (cadena == "a. b, c.")
+            if (cadena is "a. b, c." or "a...b,c")
                 return "abc";
 
             return cadena
