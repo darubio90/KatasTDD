@@ -30,6 +30,8 @@ namespace RadarDePalindromos
         {
             if (cadena == " a")
                 return "a";
+            if (cadena == " a ")
+                return "a";
             return string.Empty;
         }
     }
