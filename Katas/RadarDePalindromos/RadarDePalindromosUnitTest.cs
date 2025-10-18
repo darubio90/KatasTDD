@@ -19,6 +19,13 @@ namespace RadarDePalindromos
             cadena.Should().Be("a");
         }
 
+        [Fact]
+        public void Si_Cadena_Tiene_Dos_Espacios_Debe_Retornar_Cadena_Sin_Espacios()
+        {
+            string cadena = QuitarEspacionCadena(" a ");
+            cadena.Should().Be("a");
+        }
+
         private string QuitarEspacionCadena(string cadena)
         {
             if (cadena == " a")
