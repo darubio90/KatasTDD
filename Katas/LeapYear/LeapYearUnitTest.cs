@@ -21,24 +21,14 @@ namespace LeapYear
             esBisiesto.Should().BeFalse();
         }
 
-        [Fact]
-        public void Si_Anio_1900_Es_Divisible_Entre_100_Pero_No_Divisible_Por_400_Retornar_False()
-        {
-            bool esBisiesto = Anio.EsBisiesto(1900);
-            esBisiesto.Should().BeFalse();
-        }
 
-        [Fact]
-        public void Si_Anio_1700_Es_Divisible_Entre_100_Pero_No_Divisible_Por_400_Retornar_False()
+        [Theory]
+        [InlineData(1900)]
+        [InlineData(1700)]
+        [InlineData(1500)]
+        public void Si_Anio_Es_Divisible_Entre_100_Pero_No_Divisible_Por_400_Retornar_False(int anio)
         {
-            bool esBisiesto = Anio.EsBisiesto(1700);
-            esBisiesto.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Si_Anio_1500_Es_Divisible_Entre_100_Pero_No_Divisible_Por_400_Retornar_False()
-        {
-            bool esBisiesto = Anio.EsBisiesto(1500);
+            bool esBisiesto = Anio.EsBisiesto(anio);
             esBisiesto.Should().BeFalse();
         }
     }
@@ -47,9 +37,14 @@ namespace LeapYear
     {
         public static bool EsBisiesto(int anio)
         {
-            if (anio is 1900 or 1700 or 1500)
+            if (EsDivisiblePor(anio, 100) && EsDivisiblePor(anio, 400) is false)
                 return false;
-            return anio % 4 == 0;
+            return EsDivisiblePor(anio, 4);
+        }
+
+        private static bool EsDivisiblePor(int anio, int divisiblePor)
+        {
+            return anio % divisiblePor == 0;
         }
     }
 }
