@@ -40,6 +40,14 @@ namespace RadarDePalindromos
             QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
         }
 
+        [Fact]
+        public void Si_Cadena_Tiene_SignoDeInterrogacion_PuntoComa_DosPuntos_Y_Exclamacion_Debe_Quitarlos_Y_Retornar_Cadena_Sin_Estos_Caracteres()
+        {
+            var cadena = "a?b;c:¡!";
+            var cadenaEsperada = "abc";
+            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
+        }
+
         private string QuitarEspaciosCadena(string cadena)
         {
             const string vacio = "";
