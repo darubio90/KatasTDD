@@ -28,6 +28,15 @@ namespace LeapYear
             esBisiesto.Should().BeFalse();
 
         }
+
+
+        [Fact]
+        public void Si_Anio_3_No_Es_Divisible_Entre_4_Retornar_False()
+        {
+            bool esBisiesto = Anio.EsBisiesto(3);
+            esBisiesto.Should().BeFalse();
+
+        }
     }
 
     public class Anio
