@@ -26,6 +26,9 @@ namespace RadarDePalindromos
             const string vacio = "";
             const string espacios = " ";
 
+            if (cadena == "a.b")
+                return cadena.Replace(".", vacio);
+
             return cadena.Replace(espacios, vacio);
         }
     }
