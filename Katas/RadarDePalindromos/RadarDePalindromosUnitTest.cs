@@ -38,7 +38,6 @@ namespace RadarDePalindromos
         [Fact]
         public void Si_La_Cadena_Es_MM_Es_Palindromo_Y_Retorna_True()
         {
-
             bool esPalindromo = Palabra.EsPalindromo("MM");
             esPalindromo.Should().BeTrue();
         }
@@ -58,9 +57,9 @@ namespace RadarDePalindromos
 
     public class Palabra
     {
-        public static bool EsPalindromo(string v)
+        public static bool EsPalindromo(string cadena)
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
