@@ -42,24 +42,14 @@ namespace RadarDePalindromos
             esPalindromo.Should().BeTrue();
         }
 
-        [Fact]
-        public void Si_La_Cadena_Es_M_No_Es_Palindromo_Y_Retorna_False()
-        {
-            bool esPalindromo = Palabra.EsPalindromo("M");
-            esPalindromo.Should().BeFalse();
-        }
 
-        [Fact]
-        public void Si_La_Cadena_Es_MI_No_Es_Palindromo_Y_Retorna_False()
+        [Theory]
+        [InlineData("M")]
+        [InlineData("MI")]
+        [InlineData("MIL")]
+        public void Si_La_Cadena_No_Se_Lee_Igual_De_Frente_Hacia_Atras_No_Es_Palindromo_Y_Retorna_False(string cadena)
         {
-            bool esPalindromo = Palabra.EsPalindromo("MI");
-            esPalindromo.Should().BeFalse();
-        }
-
-        [Fact]
-        public void Si_La_Cadena_Es_MIL_No_Es_Palindromo_Y_Retorna_False()
-        {
-            bool esPalindromo = Palabra.EsPalindromo("MIL");
+            bool esPalindromo = Palabra.EsPalindromo(cadena);
             esPalindromo.Should().BeFalse();
         }
 
@@ -80,9 +70,32 @@ namespace RadarDePalindromos
     {
         public static bool EsPalindromo(string cadena)
         {
-            if (cadena is "M" or "MI" or "MIL")
+            string cadenaAEvaluar = QuitarEspaciosSignosDePuntuacionYRetonarEnMinuscula(cadena);
+            string cadenaInvertida = InvertirCadena(cadenaAEvaluar);
+
+            if (cadenaInvertida.Length <= 1)
                 return false;
-            return true;
+
+            return cadenaAEvaluar == cadenaInvertida;
+        }
+
+        private static string InvertirCadena(string cadenaAEvaluar)
+        {
+            char[] cadenaInvertida = cadenaAEvaluar.ToCharArray();
+            Array.Reverse(cadenaInvertida);
+            return new string(cadenaInvertida);
+        }
+
+        private static string QuitarEspaciosSignosDePuntuacionYRetonarEnMinuscula(string cadena)
+        {
+            const string vacio = "";
+            const string espacios = " ";
+
+            string caracteresAReemplazar = @"[.,;:¿?¡!\s]";
+
+            return Regex.Replace(cadena, caracteresAReemplazar, vacio)
+                .Replace(espacios, vacio)
+                .ToLower();
         }
     }
 }
