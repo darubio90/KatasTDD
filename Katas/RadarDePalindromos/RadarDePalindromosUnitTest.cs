@@ -35,6 +35,14 @@ namespace RadarDePalindromos
             QuitarEspaciosYSignoDePuntuacion(cadena).Should().Be(cadenaEsperada);
         }
 
+        [Fact]
+        public void Si_La_Cadena_Es_MM_Es_Palindromo_Y_Retorna_True()
+        {
+
+            bool esPalindromo = Palabra.EsPalindromo("MM");
+            esPalindromo.Should().BeTrue();
+        }
+
         private string QuitarEspaciosYSignoDePuntuacion(string cadena)
         {
             const string vacio = "";
@@ -45,6 +53,14 @@ namespace RadarDePalindromos
             return Regex.Replace(cadena, caracteresAReemplazar, vacio)
                 .Replace(espacios, vacio)
                 .ToLower();
+        }
+    }
+
+    public class Palabra
+    {
+        public static bool EsPalindromo(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
