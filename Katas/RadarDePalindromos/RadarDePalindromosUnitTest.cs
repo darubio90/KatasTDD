@@ -43,7 +43,8 @@ namespace RadarDePalindromos
             string caracteresAReemplazar = @"[.,;:¿?¡!\s]";
 
             return Regex.Replace(cadena, caracteresAReemplazar, vacio)
-                .Replace(espacios, vacio);
+                .Replace(espacios, vacio)
+                .ToLower();
         }
     }
 }
