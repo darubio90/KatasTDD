@@ -27,6 +27,14 @@ namespace RadarDePalindromos
             QuitarEspaciosYSignoDePuntuacion(cadena).Should().Be(cadenaEsperada);
         }
 
+        [Fact]
+        public void Si_Cadena_Tiene_Mayusculas_Debe_Retornar_Cadena_En_Minuscula()
+        {
+            string cadena = "mAmA";
+            string cadenaEsperada = "mama";
+            QuitarEspaciosYSignoDePuntuacion(cadena).Should().Be(cadenaEsperada);
+        }
+
         private string QuitarEspaciosYSignoDePuntuacion(string cadena)
         {
             const string vacio = "";
