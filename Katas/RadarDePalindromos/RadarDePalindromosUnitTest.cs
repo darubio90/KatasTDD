@@ -56,6 +56,13 @@ namespace RadarDePalindromos
             esPalindromo.Should().BeFalse();
         }
 
+        [Fact]
+        public void Si_La_Cadena_Es_MIL_No_Es_Palindromo_Y_Retorna_False()
+        {
+            bool esPalindromo = Palabra.EsPalindromo("MIL");
+            esPalindromo.Should().BeFalse();
+        }
+
         private string QuitarEspaciosYSignoDePuntuacion(string cadena)
         {
             const string vacio = "";
