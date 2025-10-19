@@ -80,7 +80,7 @@ namespace RadarDePalindromos
     {
         public static bool EsPalindromo(string cadena)
         {
-            if (cadena is "M" or "MI")
+            if (cadena is "M" or "MI" or "MIL")
                 return false;
             return true;
         }
