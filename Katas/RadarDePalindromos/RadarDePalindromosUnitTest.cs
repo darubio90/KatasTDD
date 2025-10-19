@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 
 namespace RadarDePalindromos
 {
@@ -11,55 +12,30 @@ namespace RadarDePalindromos
         [InlineData(" a ", "a")]
         public void Si_Cadena_Tiene_Espacios_Debe_Quitarlo_Retornar_Cadena_Sin_Espacios(string cadena, string cadenaEsperada)
         {
-            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
+            QuitarEspaciosYSignoDePuntuacion(cadena).Should().Be(cadenaEsperada);
         }
+
 
 
         [Theory]
-        [InlineData("a.b", "ab")]
-        [InlineData("a.b.", "ab")]
-        [InlineData("a.b..", "ab")]
-        public void Si_Cadena_Tiene_Puntos_Debe_Quitarlos_Y_Retornar_Cadena_SinPuntos(string cadena, string cadenaEsperada)
+        [InlineData("a?b;c:¡!", "abc")]
+        [InlineData("a. b, c.", "abc")]
+        [InlineData("a...b,c", "abc")]
+        [InlineData("a...b,c1", "abc1")]
+        public void Si_Cadena_Tiene_Signo_De_Puntuacion_Debe_Quitarlos_Y_Retornar_Cadena_Sin_Estos_Caracteres(string cadena, string cadenaEsperada)
         {
-            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
+            QuitarEspaciosYSignoDePuntuacion(cadena).Should().Be(cadenaEsperada);
         }
 
-        [Fact]
-        public void Si_Cadena_Tiene_Un_Punto_Una_Coma_Debe_Quitarlos_Y_Retornar_Cadena_Sin_Puntos_Y_Sin_Comas()
-        {
-            var cadena = "a. b, c.";
-            var cadenaEsperada = "abc";
-            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
-        }
-
-        [Fact]
-        public void Si_Cadena_Tiene_PuntosSuspensivos_Y_Una_Coma_Debe_Quitarlos_Y_Retornar_Cadena_Sin_PuntoSuspensivos_Y_Sin_Comas()
-        {
-            var cadena = "a...b,c";
-            var cadenaEsperada = "abc";
-            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
-        }
-
-        [Fact]
-        public void Si_Cadena_Tiene_SignoDeInterrogacion_PuntoComa_DosPuntos_Y_Exclamacion_Debe_Quitarlos_Y_Retornar_Cadena_Sin_Estos_Caracteres()
-        {
-            var cadena = "a?b;c:¡!";
-            var cadenaEsperada = "abc";
-            QuitarEspaciosCadena(cadena).Should().Be(cadenaEsperada);
-        }
-
-        private string QuitarEspaciosCadena(string cadena)
+        private string QuitarEspaciosYSignoDePuntuacion(string cadena)
         {
             const string vacio = "";
             const string espacios = " ";
-            const string puntos = ".";
 
-            if (cadena is "a. b, c." or "a...b,c" or "a?b;c:¡!")
-                return "abc";
+            string caracteresAReemplazar = @"[.,;:¿?¡!\s]";
 
-            return cadena
-                .Replace(espacios, vacio)
-                .Replace(puntos, vacio);
+            return Regex.Replace(cadena, caracteresAReemplazar, vacio)
+                .Replace(espacios, vacio);
         }
     }
 }
