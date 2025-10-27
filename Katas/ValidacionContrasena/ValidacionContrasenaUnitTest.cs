@@ -105,6 +105,9 @@ namespace ValidacionContrasena
             if (LaContraseñaNoTieneNumeros())
                 return false;
 
+            if (!Contrasena.Contains("_"))
+                return false;
+
             return true;
         }
 
