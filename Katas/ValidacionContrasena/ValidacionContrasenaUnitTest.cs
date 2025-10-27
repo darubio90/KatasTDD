@@ -87,6 +87,9 @@ namespace ValidacionContrasena
             if (LaContraseñaNoContieneMinusculas())
                 return false;
 
+            if (!Contrasena.Any(char.IsNumber))
+                return false;
+
             return true;
         }
 
