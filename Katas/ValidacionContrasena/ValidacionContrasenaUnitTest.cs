@@ -64,6 +64,21 @@ namespace ValidacionContrasena
             esValida.Should().BeFalse();
 
         }
+
+        [Fact]
+        public void Si_ContraseñaNoTieneGuionBajo_Debe_Retonar_False()
+        {
+            //arrange
+            var gestorContrasena = new GestorContrasena("Passwordddd1");
+
+            //act
+            bool esValida = gestorContrasena.EsValida();
+
+            //assert
+
+            esValida.Should().BeFalse();
+
+        }
     }
 
     public class GestorContrasena
