@@ -60,6 +60,8 @@ namespace ValidacionContrasena
                 return false;
             if (Contrasena.Any(char.IsUpper) is false)
                 return false;
+            if (Contrasena.Any(char.IsLower) is false)
+                return false;
             return true;
         }
     }
