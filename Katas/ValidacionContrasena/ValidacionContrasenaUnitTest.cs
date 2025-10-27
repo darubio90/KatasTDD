@@ -69,6 +69,9 @@ namespace ValidacionContrasena
             if (LaContraseñaNoContieneMayusculas())
                 return false;
 
+            if(!Contrasena.Any(char.IsLower))
+                return false;
+
             return true;
         }
 
