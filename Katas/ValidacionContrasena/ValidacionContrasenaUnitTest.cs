@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using System.ComponentModel.DataAnnotations;
 
 namespace ValidacionContrasena
 {
@@ -77,6 +76,20 @@ namespace ValidacionContrasena
             //assert
 
             esValida.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Si_ContraseñaEsValida_Debe_Retonar_True()
+        {
+            //arrange
+            var gestorContrasena = new GestorContrasena("Passwo_rdddd1");
+
+            //act
+            bool esValida = gestorContrasena.EsValida();
+
+            //assert
+
+            esValida.Should().BeTrue();
 
         }
     }
