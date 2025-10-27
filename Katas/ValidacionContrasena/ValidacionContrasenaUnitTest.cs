@@ -50,6 +50,9 @@ namespace ValidacionContrasena
         {
             if (LaContrasenaNoCumpleConLosCaracteresMinimos())
                 return false;
+            if (!Contrasena.Any(char.IsUpper))
+                return false;
+
             return true;
         }
 
