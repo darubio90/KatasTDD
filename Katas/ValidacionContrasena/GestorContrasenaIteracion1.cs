@@ -3,13 +3,15 @@
 
     public abstract class GestorContrasenaBase
     {
+        public abstract int LimiteCaracteresContrasena { get; }
         public abstract bool EsValida();
     }
 
     public class GestorContrasenaIteracion1 : GestorContrasenaBase
     {
-        private const int LimiteCaracteresContrasena = 9;
         private string Contrasena;
+
+        public override int LimiteCaracteresContrasena => 9;
 
         public GestorContrasenaIteracion1(string contrasena)
         {

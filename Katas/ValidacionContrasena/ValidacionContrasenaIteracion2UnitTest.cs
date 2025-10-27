@@ -1,9 +1,4 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ValidacionContrasena
 {
@@ -34,6 +29,8 @@ namespace ValidacionContrasena
         {
             Contrasena = contrasena;
         }
+
+        public override int LimiteCaracteresContrasena => 6;
 
         public override bool EsValida()
         {
