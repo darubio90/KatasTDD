@@ -19,6 +19,21 @@ namespace ValidacionContrasena
             esValida.Should().BeFalse();
 
         }
+
+        [Fact]
+        public void Si_ContraseñaNoTieneMayusculas_Debe_Retonar_False()
+        {
+            //arrange
+            var gestorContrasena = new GestorContrasena("pass1234567");
+
+            //act
+            bool esValida = gestorContrasena.EsValida();
+
+            //assert
+
+            esValida.Should().BeFalse();
+
+        }
     }
 
     public class GestorContrasena
