@@ -18,6 +18,20 @@ namespace ValidacionContrasena
             esValida.Should().BeFalse();
         }
 
+        [Fact]
+        public void Si_ContraseñaNoTieneMayusculas_Debe_Retonar_False()
+        {
+            //arrange
+            GestorContrasenaBase gestorContrasena = new GestorContrasenaIteracion2("passwrod12345");
+
+            //act
+            bool esValida = gestorContrasena.EsValida();
+
+            //assert
+
+            esValida.Should().BeFalse();
+        }
+
     }
 
     public class GestorContrasenaIteracion2 : GestorContrasenaBase
