@@ -23,6 +23,7 @@ namespace ValidacionContrasena
 
     public class GestorContrasena
     {
+        private const int LimiteCaracteresContrasena = 9;
         private string Contrasena;
 
         public GestorContrasena(string contrasena)
@@ -32,7 +33,14 @@ namespace ValidacionContrasena
 
         public bool EsValida()
         {
-            return false;
+            if (LaContrasenaNoCumpleConLosCaracteresMinimos())
+                return false;
+            return true;
+        }
+
+        private bool LaContrasenaNoCumpleConLosCaracteresMinimos()
+        {
+            return Contrasena.Length < LimiteCaracteresContrasena;
         }
     }
 }
