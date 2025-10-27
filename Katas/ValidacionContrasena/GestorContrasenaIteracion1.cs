@@ -10,7 +10,7 @@
 
         public override bool EsValida()
         {
-            if (LaContrasenaNoCumpleConLosCaracteresMinimos()
+            if (LaContrasenaNoCumpleConLosCaracteresMinimos() is false
                 || LaContrasenaNoContieneMayusculas() is false
                 || LaContrasenaNoContieneMinusculas() is false
                 || LaContrasenaNoTieneNumeros() is false

@@ -31,7 +31,7 @@
 
         protected bool LaContrasenaNoCumpleConLosCaracteresMinimos()
         {
-            return Contrasena.Length < LimiteCaracteresContrasena;
+            return Contrasena.Length > LimiteCaracteresContrasena;
         }
 
         private bool ValidarSiCumpleCondicion(Func<char, bool> condicion)
