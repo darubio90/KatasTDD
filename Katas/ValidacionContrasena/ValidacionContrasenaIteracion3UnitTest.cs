@@ -49,8 +49,6 @@ namespace ValidacionContrasena
 
     public class GestorContrasenaIteracion3 : GestorContrasenaBase
     {
-        private string v;
-
         public GestorContrasenaIteracion3(string contrasena) : base(contrasena, limiteCaracteresContrasena: 16)
         {
         }
@@ -60,6 +58,8 @@ namespace ValidacionContrasena
             if (LaContrasenaNoCumpleConLosCaracteresMinimos())
                 return false;
             if (LaContrasenaNoContieneMayusculas() is false)
+                return false;
+            if (LaContrasenaNoContieneMinusculas() is false)
                 return false;
             return true;
         }
