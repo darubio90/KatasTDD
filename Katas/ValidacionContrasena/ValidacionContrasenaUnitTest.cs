@@ -69,10 +69,15 @@ namespace ValidacionContrasena
             if (LaContraseñaNoContieneMayusculas())
                 return false;
 
-            if(!Contrasena.Any(char.IsLower))
+            if (LaContraseñaNoContieneMinusculas())
                 return false;
 
             return true;
+        }
+
+        private bool LaContraseñaNoContieneMinusculas()
+        {
+            return !Contrasena.Any(char.IsLower);
         }
 
         private bool LaContraseñaNoContieneMayusculas()
