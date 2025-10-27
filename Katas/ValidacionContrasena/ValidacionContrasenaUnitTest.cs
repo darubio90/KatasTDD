@@ -105,10 +105,15 @@ namespace ValidacionContrasena
             if (LaContraseñaNoTieneNumeros())
                 return false;
 
-            if (!Contrasena.Contains("_"))
+            if (LaContraseñaNoTieneGuionBajo())
                 return false;
 
             return true;
+        }
+
+        private bool LaContraseñaNoTieneGuionBajo()
+        {
+            return !Contrasena.Contains("_");
         }
 
         private bool LaContraseñaNoTieneNumeros()
