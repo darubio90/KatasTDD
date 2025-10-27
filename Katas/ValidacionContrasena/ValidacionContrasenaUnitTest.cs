@@ -23,16 +23,16 @@ namespace ValidacionContrasena
 
     public class GestorContrasena
     {
-        private string v;
+        private string Contrasena;
 
-        public GestorContrasena(string v)
+        public GestorContrasena(string contrasena)
         {
-            this.v = v;
+            Contrasena = contrasena;
         }
 
         public bool EsValida()
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }
