@@ -75,6 +75,8 @@ namespace ValidacionContrasena
                 return false;
             if (LaContrasenaNoContieneMinusculas() is false)
                 return false;
+            if (!Contrasena.Contains("_"))
+                return false;
             return true;
         }
     }
