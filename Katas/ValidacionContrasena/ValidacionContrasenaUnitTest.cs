@@ -87,10 +87,15 @@ namespace ValidacionContrasena
             if (LaContraseñaNoContieneMinusculas())
                 return false;
 
-            if (!Contrasena.Any(char.IsNumber))
+            if (LaContraseñaNoTieneNumeros())
                 return false;
 
             return true;
+        }
+
+        private bool LaContraseñaNoTieneNumeros()
+        {
+            return !Contrasena.Any(char.IsNumber);
         }
 
         private bool LaContraseñaNoContieneMinusculas()
