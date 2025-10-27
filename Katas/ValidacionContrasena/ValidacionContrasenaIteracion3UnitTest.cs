@@ -45,6 +45,8 @@ namespace ValidacionContrasena
         {
             if (LaContrasenaNoCumpleConLosCaracteresMinimos())
                 return false;
+            if (LaContrasenaNoContieneMayusculas() is false)
+                return false;
             return true;
         }
     }
