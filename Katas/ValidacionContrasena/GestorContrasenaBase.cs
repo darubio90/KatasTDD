@@ -38,5 +38,10 @@
         {
             return Contrasena.Any(condicion);
         }
+
+        protected bool LaContrasenaNoTieneGuionBajo()
+        {
+            return Contrasena.Contains("_");
+        }
     }
 }

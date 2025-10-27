@@ -69,13 +69,11 @@ namespace ValidacionContrasena
 
         public override bool EsValida()
         {
-            if (LaContrasenaNoCumpleConLosCaracteresMinimos())
-                return false;
-            if (LaContrasenaNoContieneMayusculas() is false)
-                return false;
-            if (LaContrasenaNoContieneMinusculas() is false)
-                return false;
-            if (!Contrasena.Contains("_"))
+            if (LaContrasenaNoCumpleConLosCaracteresMinimos()
+                || LaContrasenaNoContieneMayusculas() is false
+                || LaContrasenaNoContieneMinusculas() is false
+                || LaContrasenaNoTieneGuionBajo() is false
+                )
                 return false;
             return true;
         }

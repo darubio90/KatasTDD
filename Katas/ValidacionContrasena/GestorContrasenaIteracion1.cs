@@ -19,10 +19,5 @@
 
             return true;
         }
-
-        private bool LaContrasenaNoTieneGuionBajo()
-        {
-            return Contrasena.Contains("_");
-        }
     }
 }
