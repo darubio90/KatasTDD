@@ -27,6 +27,15 @@
             return ValidarCon(caracter => char.IsLower(caracter));
         }
 
+        protected bool LaContrasenaNoTieneNumeros()
+        {
+            return ValidarCon(caracter => char.IsNumber(caracter));
+        }
+
+        protected bool LaContrasenaNoCumpleConLosCaracteresMinimos()
+        {
+            return ValidarCon(caracter => caracter < LimiteCaracteresContrasena);
+        }
     }
 
     public class GestorContrasenaIteracion1 : GestorContrasenaBase
@@ -51,21 +60,6 @@
         private bool LaContrasenaNoTieneGuionBajo()
         {
             return Contrasena.Contains("_");
-        }
-
-        private bool LaContrasenaNoTieneNumeros()
-        {
-            return ValidarCon(caracter => char.IsNumber(caracter));
-        }
-
-        private bool LaContrasenaNoCumpleConLosCaracteresMinimos()
-        {
-            return ValidarCon(caracter => caracter < LimiteCaracteresContrasena);
-        }
-
-        private bool ValidarCon(Func<char, bool> predicado)
-        {
-            return Contrasena.Any(predicado);
         }
     }
 }
