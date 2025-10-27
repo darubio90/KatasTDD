@@ -77,7 +77,7 @@ namespace ValidacionContrasena
 
     public class GestorContrasenaIteracion3 : GestorContrasenaBase
     {
-        public GestorContrasenaIteracion3(string contrasena) : base(contrasena, limiteCaracteresContrasena: 17)
+        public GestorContrasenaIteracion3(string contrasena) : base(contrasena, limiteCaracteresContrasena: 16)
         {
         }
 

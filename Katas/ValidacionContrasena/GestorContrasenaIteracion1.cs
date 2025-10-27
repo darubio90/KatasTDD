@@ -3,7 +3,7 @@
 
     public class GestorContrasenaIteracion1 : GestorContrasenaBase
     {
-        public GestorContrasenaIteracion1(string contrasena) : base(contrasena, limiteCaracteresContrasena: 9)
+        public GestorContrasenaIteracion1(string contrasena) : base(contrasena, limiteCaracteresContrasena: 8)
         {
             Contrasena = contrasena;
         }
