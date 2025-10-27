@@ -13,6 +13,16 @@
         protected int LimiteCaracteresContrasena { get; set; }
         public abstract bool EsValida();
 
+        protected bool LaContrasenaNoContieneMayusculas()
+        {
+            return ValidarCon(caracter => char.IsUpper(caracter));
+        }
+
+        private bool ValidarCon(Func<char, bool> predicado)
+        {
+            return Contrasena.Any(predicado);
+        }
+
     }
 
     public class GestorContrasenaIteracion1 : GestorContrasenaBase
@@ -52,19 +62,16 @@
             return ValidarCon(caracter => char.IsLower(caracter));
         }
 
-        private bool LaContrasenaNoContieneMayusculas()
-        {
-            return ValidarCon(caracter => char.IsUpper(caracter));
-        }
-
         private bool LaContrasenaNoCumpleConLosCaracteresMinimos()
         {
             return ValidarCon(caracter => caracter < LimiteCaracteresContrasena);
         }
 
-        public bool ValidarCon(Func<char, bool> predicado)
+        private bool ValidarCon(Func<char, bool> predicado)
         {
             return Contrasena.Any(predicado);
         }
+
+
     }
 }
