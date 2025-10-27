@@ -37,7 +37,9 @@ namespace ValidacionContrasena
 
         public override bool EsValida()
         {
-            throw new NotImplementedException();
+            if (Contrasena.Length < 6)
+                return false;
+            return true;
         }
     }
 }
