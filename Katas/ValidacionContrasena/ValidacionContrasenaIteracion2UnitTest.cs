@@ -44,6 +44,8 @@ namespace ValidacionContrasena
         {
             if (Contrasena.Length < 6)
                 return false;
+            if (Contrasena.Any(char.IsUpper) is false)
+                return false;
             return true;
         }
     }
