@@ -59,7 +59,6 @@ namespace ValidacionContrasena
 
             esValida.Should().BeFalse();
         }
-
     }
 
     public class GestorContrasenaIteracion2 : GestorContrasenaBase
@@ -75,6 +74,8 @@ namespace ValidacionContrasena
             if (Contrasena.Any(char.IsUpper) is false)
                 return false;
             if (Contrasena.Any(char.IsLower) is false)
+                return false;
+            if (Contrasena.Any(char.IsNumber) is false)
                 return false;
             return true;
         }
