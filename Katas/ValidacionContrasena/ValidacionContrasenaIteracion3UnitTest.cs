@@ -29,11 +29,9 @@ namespace ValidacionContrasena
 
         public override bool EsValida()
         {
-            if (Contrasena.Length < LimiteCaracteresContrasena)
+            if (LaContrasenaNoCumpleConLosCaracteresMinimos())
                 return false;
             return true;
-
-
         }
     }
 }

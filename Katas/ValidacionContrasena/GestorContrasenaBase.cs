@@ -14,27 +14,29 @@
 
         protected bool LaContrasenaNoContieneMayusculas()
         {
-            return ValidarCon(caracter => char.IsUpper(caracter));
+            return ValidarSiCumpleCondicion(caracter => char.IsUpper(caracter));
         }
 
-        private bool ValidarCon(Func<char, bool> predicado)
-        {
-            return Contrasena.Any(predicado);
-        }
+
 
         protected bool LaContrasenaNoContieneMinusculas()
         {
-            return ValidarCon(caracter => char.IsLower(caracter));
+            return ValidarSiCumpleCondicion(caracter => char.IsLower(caracter));
         }
 
         protected bool LaContrasenaNoTieneNumeros()
         {
-            return ValidarCon(caracter => char.IsNumber(caracter));
+            return ValidarSiCumpleCondicion(caracter => char.IsNumber(caracter));
         }
 
         protected bool LaContrasenaNoCumpleConLosCaracteresMinimos()
         {
-            return ValidarCon(caracter => caracter < LimiteCaracteresContrasena);
+            return Contrasena.Length < LimiteCaracteresContrasena;
+        }
+
+        private bool ValidarSiCumpleCondicion(Func<char, bool> condicion)
+        {
+            return Contrasena.Any(condicion);
         }
     }
 }
