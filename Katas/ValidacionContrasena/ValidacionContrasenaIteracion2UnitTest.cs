@@ -16,21 +16,15 @@ namespace ValidacionContrasena
             //assert
 
             esValida.Should().BeFalse();
-
         }
 
     }
 
     public class GestorContrasenaIteracion2 : GestorContrasenaBase
     {
-        private string Contrasena;
-
-        public GestorContrasenaIteracion2(string contrasena)
+        public GestorContrasenaIteracion2(string contrasena) : base(contrasena, limiteCaracteresContrasena: 6)
         {
-            Contrasena = contrasena;
         }
-
-        public override int LimiteCaracteresContrasena => 6;
 
         public override bool EsValida()
         {

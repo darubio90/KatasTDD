@@ -3,20 +3,27 @@
 
     public abstract class GestorContrasenaBase
     {
-        public abstract int LimiteCaracteresContrasena { get; }
+        protected GestorContrasenaBase(string contrasena, int limiteCaracteresContrasena)
+        {
+            Contrasena = contrasena;
+            LimiteCaracteresContrasena = limiteCaracteresContrasena;
+        }
+
+        protected string Contrasena { get; set; }
+        protected int LimiteCaracteresContrasena { get; set; }
         public abstract bool EsValida();
+
     }
 
     public class GestorContrasenaIteracion1 : GestorContrasenaBase
     {
-        private string Contrasena;
-
-        public override int LimiteCaracteresContrasena => 9;
-
-        public GestorContrasenaIteracion1(string contrasena)
+        public GestorContrasenaIteracion1(string contrasena) : base(contrasena, limiteCaracteresContrasena: 9)
         {
             Contrasena = contrasena;
         }
+
+
+
 
         public override bool EsValida()
         {
