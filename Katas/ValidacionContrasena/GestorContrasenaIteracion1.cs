@@ -1,6 +1,5 @@
 ﻿namespace ValidacionContrasena
 {
-
     public abstract class GestorContrasenaBase
     {
         protected GestorContrasenaBase(string contrasena, int limiteCaracteresContrasena)
@@ -23,6 +22,11 @@
             return Contrasena.Any(predicado);
         }
 
+        protected bool LaContrasenaNoContieneMinusculas()
+        {
+            return ValidarCon(caracter => char.IsLower(caracter));
+        }
+
     }
 
     public class GestorContrasenaIteracion1 : GestorContrasenaBase
@@ -31,9 +35,6 @@
         {
             Contrasena = contrasena;
         }
-
-
-
 
         public override bool EsValida()
         {
@@ -57,11 +58,6 @@
             return ValidarCon(caracter => char.IsNumber(caracter));
         }
 
-        private bool LaContrasenaNoContieneMinusculas()
-        {
-            return ValidarCon(caracter => char.IsLower(caracter));
-        }
-
         private bool LaContrasenaNoCumpleConLosCaracteresMinimos()
         {
             return ValidarCon(caracter => caracter < LimiteCaracteresContrasena);
@@ -71,7 +67,5 @@
         {
             return Contrasena.Any(predicado);
         }
-
-
     }
 }
