@@ -69,14 +69,12 @@ namespace ValidacionContrasena
 
         public override bool EsValida()
         {
-            if (Contrasena.Length < 6)
+            if (LaContrasenaNoCumpleConLosCaracteresMinimos()
+                || LaContrasenaNoContieneMayusculas() is false
+                || LaContrasenaNoContieneMinusculas() is false
+                || LaContrasenaNoTieneNumeros() is false)
                 return false;
-            if (Contrasena.Any(char.IsUpper) is false)
-                return false;
-            if (Contrasena.Any(char.IsLower) is false)
-                return false;
-            if (Contrasena.Any(char.IsNumber) is false)
-                return false;
+
             return true;
         }
     }
