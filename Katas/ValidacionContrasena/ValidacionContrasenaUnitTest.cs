@@ -106,47 +106,45 @@ namespace ValidacionContrasena
 
         public bool EsValida()
         {
-            if (LaContrasenaNoCumpleConLosCaracteresMinimos())
-                return false;
-
-            if (LaContraseñaNoContieneMayusculas())
-                return false;
-
-            if (LaContraseñaNoContieneMinusculas())
-                return false;
-
-            if (LaContraseñaNoTieneNumeros())
-                return false;
-
-            if (LaContraseñaNoTieneGuionBajo())
+            if (LaContrasenaNoCumpleConLosCaracteresMinimos()
+                || LaContrasenaNoContieneMayusculas() is false
+                || LaContrasenaNoContieneMinusculas() is false
+                || LaContrasenaNoTieneNumeros() is false
+                || LaContrasenaNoTieneGuionBajo() is false
+                )
                 return false;
 
             return true;
         }
 
-        private bool LaContraseñaNoTieneGuionBajo()
+        private bool LaContrasenaNoTieneGuionBajo()
         {
-            return !Contrasena.Contains("_");
+            return Contrasena.Contains("_");
         }
 
-        private bool LaContraseñaNoTieneNumeros()
+        private bool LaContrasenaNoTieneNumeros()
         {
-            return !Contrasena.Any(char.IsNumber);
+            return ValidarCon(caracter => char.IsNumber(caracter));
         }
 
-        private bool LaContraseñaNoContieneMinusculas()
+        private bool LaContrasenaNoContieneMinusculas()
         {
-            return !Contrasena.Any(char.IsLower);
+            return ValidarCon(caracter => char.IsLower(caracter));
         }
 
-        private bool LaContraseñaNoContieneMayusculas()
+        private bool LaContrasenaNoContieneMayusculas()
         {
-            return !Contrasena.Any(char.IsUpper);
+            return ValidarCon(caracter => char.IsUpper(caracter));
         }
 
         private bool LaContrasenaNoCumpleConLosCaracteresMinimos()
         {
-            return Contrasena.Length < LimiteCaracteresContrasena;
+            return ValidarCon(caracter => caracter < LimiteCaracteresContrasena);
+        }
+
+        public bool ValidarCon(Func<char, bool> predicado)
+        {
+            return Contrasena.Any(predicado);
         }
     }
 }
