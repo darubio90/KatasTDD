@@ -1,4 +1,5 @@
-﻿namespace ValidacionContrasena
+﻿
+namespace ValidacionContrasena
 {
     public abstract class GestorContrasenaBase
     {
@@ -47,6 +48,11 @@
         private bool LaContrasenaContieneGuionBajo()
         {
             return Contrasena.Contains("_");
+        }
+
+        internal List<string> ObtenerErrores()
+        {
+            throw new NotImplementedException();
         }
     }
 }
