@@ -174,5 +174,24 @@ namespace ValidacionContrasena
 
             errores.Should().Equal(erroresEsperados);
         }
+
+        [Fact]
+        public void Si_ContraseñaNoTieneLongitudMinima_Debe_Retonar_MensajeIndicandoQueFaltan()
+        {
+            //arrange
+            GestorContrasenaBase gestorContrasena = new GestorContrasenaIteracion1("P_as1");
+
+            //act
+            List<string> errores = gestorContrasena.ObtenerErrores();
+
+            //assert
+
+            List<string> erroresEsperados = new()
+            {
+                "La contraseña ingresada no es valida, la longitud minima es de 8 y la ingresada es 5."
+            };
+
+            errores.Should().Equal(erroresEsperados);
+        }
     }
 }
