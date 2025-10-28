@@ -21,8 +21,8 @@ namespace ValidacionContrasena
         protected bool TieneNumeros => LaContrasenaContieneNumeros();
         protected bool TieneGuionBajo => LaContrasenaContieneGuionBajo();
 
-        protected string Contrasena { get; set; }
-        protected int LimiteCaracteresContrasena { get; set; }
+        protected string Contrasena { get; }
+        protected int LimiteCaracteresContrasena { get; }
         public abstract bool EsValida();
 
         private bool LaContrasenaContieneMayusculas()
