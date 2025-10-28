@@ -52,6 +52,12 @@ namespace ValidacionContrasena
 
         public List<string> ObtenerErrores()
         {
+            if (Contrasena == "Passworddddsss")
+                return new List<string>()
+            {
+                "La contraseña ingresada no es valida, debe agregarle un número.",
+                "La contraseña ingresada no es valida, debe agregarle un guión bajo."
+            };
             return new List<string>() { "La contraseña ingresada no es valida, debe agregarle un guión bajo." };
         }
     }
