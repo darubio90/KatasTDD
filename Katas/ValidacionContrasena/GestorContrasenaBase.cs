@@ -8,28 +8,33 @@
             LimiteCaracteresContrasena = limiteCaracteresContrasena;
         }
 
+        protected bool TieneLongitudValida => LaContrasenaContieneLosCaracteresMinimos();
+        protected bool TieneMayusculas => LaContrasenaContieneMayusculas();
+        protected bool TieneMinusculas => LaContrasenaContieneMinusculas();
+        protected bool TieneNumeros => LaContrasenaContieneNumeros();
+        protected bool TieneGuionBajo => LaContrasenaContieneGuionBajo();
+
         protected string Contrasena { get; set; }
         protected int LimiteCaracteresContrasena { get; set; }
         public abstract bool EsValida();
 
-        protected bool LaContrasenaNoContieneMayusculas()
+        private bool LaContrasenaContieneMayusculas()
         {
             return ValidarSiCumpleCondicion(caracter => char.IsUpper(caracter));
         }
 
 
-
-        protected bool LaContrasenaNoContieneMinusculas()
+        private bool LaContrasenaContieneMinusculas()
         {
             return ValidarSiCumpleCondicion(caracter => char.IsLower(caracter));
         }
 
-        protected bool LaContrasenaNoTieneNumeros()
+        private bool LaContrasenaContieneNumeros()
         {
             return ValidarSiCumpleCondicion(caracter => char.IsNumber(caracter));
         }
 
-        protected bool LaContrasenaNoCumpleConLosCaracteresMinimos()
+        private bool LaContrasenaContieneLosCaracteresMinimos()
         {
             return Contrasena.Length > LimiteCaracteresContrasena;
         }
@@ -39,7 +44,7 @@
             return Contrasena.Any(condicion);
         }
 
-        protected bool LaContrasenaNoTieneGuionBajo()
+        private bool LaContrasenaContieneGuionBajo()
         {
             return Contrasena.Contains("_");
         }

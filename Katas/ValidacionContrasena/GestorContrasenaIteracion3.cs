@@ -8,12 +8,7 @@
 
         public override bool EsValida()
         {
-            if (LaContrasenaNoCumpleConLosCaracteresMinimos() is false
-                || LaContrasenaNoContieneMayusculas() is false
-                || LaContrasenaNoContieneMinusculas() is false
-                || LaContrasenaNoTieneGuionBajo() is false)
-                return false;
-            return true;
+            return TieneLongitudValida && TieneMayusculas && TieneMinusculas && TieneGuionBajo;
         }
     }
 }
