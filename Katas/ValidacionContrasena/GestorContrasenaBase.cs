@@ -13,6 +13,7 @@ namespace ValidacionContrasena
         private const string LaContraseñaIngresadaNoTieneNumeros = "La contraseña ingresada no es valida, debe agregarle un número.";
         private const string LaContraseñaIngresadaNoTieneGuionBajo = "La contraseña ingresada no es valida, debe agregarle un guión bajo.";
         private const string LaContraseñaIngresadaNoTieneMayusculas = "La contraseña ingresada no es valida, debe agregarle mayuscula.";
+        private const string LaContraseñaIngresadaNoTieneLaLongitudMinima = "La contraseña ingresada no es valida, la longitud minima es de {0} y la ingresada es {1}.";
 
         protected bool TieneLongitudValida => LaContrasenaContieneLosCaracteresMinimos();
         protected bool TieneMayusculas => LaContrasenaContieneMayusculas();
@@ -58,6 +59,9 @@ namespace ValidacionContrasena
         public List<string> ObtenerErrores()
         {
             List<string> errrores = new();
+
+            if (TieneLongitudValida is false)
+                errrores.Add(string.Format(LaContraseñaIngresadaNoTieneLaLongitudMinima, LimiteCaracteresContrasena, Contrasena.Length));
 
             if (TieneMayusculas is false)
                 errrores.Add(LaContraseñaIngresadaNoTieneMayusculas);
