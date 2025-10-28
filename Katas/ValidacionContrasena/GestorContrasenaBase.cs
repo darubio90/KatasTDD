@@ -9,6 +9,10 @@ namespace ValidacionContrasena
             LimiteCaracteresContrasena = limiteCaracteresContrasena;
         }
 
+        private const string LaContrasenaIngresadaNoTieneMinusculas = "La contraseña ingresada no es valida, debe agregarle minusculas.";
+        private const string LaContraseñaIngresadaNoTieneNumeros = "La contraseña ingresada no es valida, debe agregarle un número.";
+        private const string LaContraseñaIngresadaNoTieneGuionBajo = "La contraseña ingresada no es valida, debe agregarle un guión bajo.";
+
         protected bool TieneLongitudValida => LaContrasenaContieneLosCaracteresMinimos();
         protected bool TieneMayusculas => LaContrasenaContieneMayusculas();
         protected bool TieneMinusculas => LaContrasenaContieneMinusculas();
@@ -52,21 +56,19 @@ namespace ValidacionContrasena
 
         public List<string> ObtenerErrores()
         {
-            if (Contrasena == "Passworddddsss")
-                return new List<string>()
-            {
-                "La contraseña ingresada no es valida, debe agregarle un número.",
-                "La contraseña ingresada no es valida, debe agregarle un guión bajo."
-            };
+            List<string> errrores = new();
 
-            if(Contrasena== "PASSSSSSWORDDDDD")
-                return new List<string>()
-            {
-                "La contraseña ingresada no es valida, debe agregarle minusculas.",
-                "La contraseña ingresada no es valida, debe agregarle un número.",
-                "La contraseña ingresada no es valida, debe agregarle un guión bajo."
-            };
-            return new List<string>() { "La contraseña ingresada no es valida, debe agregarle un guión bajo." };
+            if (TieneMinusculas is false)
+                errrores.Add(LaContrasenaIngresadaNoTieneMinusculas);
+
+            if (TieneNumeros is false)
+                errrores.Add(LaContraseñaIngresadaNoTieneNumeros);
+
+
+            if (TieneGuionBajo is false)
+                errrores.Add(LaContraseñaIngresadaNoTieneGuionBajo);
+
+            return errrores;
         }
     }
 }
