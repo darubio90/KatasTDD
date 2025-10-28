@@ -193,5 +193,44 @@ namespace ValidacionContrasena
 
             errores.Should().Equal(erroresEsperados);
         }
+
+        [Fact]
+        public void Si_ContraseñaEsVacia_Debe_Retonar_MensajeIndicandoQueFaltanTodoLasValidaciones()
+        {
+            //arrange
+            GestorContrasenaBase gestorContrasena = new GestorContrasenaIteracion1("");
+
+            //act
+            List<string> errores = gestorContrasena.ObtenerErrores();
+
+            //assert
+
+
+            List<string> erroresEsperados = new()
+            {
+                "La contraseña ingresada no es valida, la longitud minima es de 8 y la ingresada es 0.",
+                "La contraseña ingresada no es valida, debe agregarle mayuscula.",
+                "La contraseña ingresada no es valida, debe agregarle minusculas.",
+                "La contraseña ingresada no es valida, debe agregarle un número." ,
+                "La contraseña ingresada no es valida, debe agregarle un guión bajo."
+            };
+
+            errores.Should().Equal(erroresEsperados);
+        }
+
+        [Fact]
+        public void Si_ContraseñaEsValida_Debe_Retonar_ErroresVacio()
+        {
+            //arrange
+            GestorContrasenaBase gestorContrasena = new GestorContrasenaIteracion1("Passsword123_");
+
+            //act
+            List<string> errores = gestorContrasena.ObtenerErrores();
+
+            //assert
+            List<string> erroresEsperados = new();
+
+            errores.Should().Equal(erroresEsperados);
+        }
     }
 }
