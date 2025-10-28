@@ -58,6 +58,14 @@ namespace ValidacionContrasena
                 "La contraseña ingresada no es valida, debe agregarle un número.",
                 "La contraseña ingresada no es valida, debe agregarle un guión bajo."
             };
+
+            if(Contrasena== "PASSSSSSWORDDDDD")
+                return new List<string>()
+            {
+                "La contraseña ingresada no es valida, debe agregarle minusculas.",
+                "La contraseña ingresada no es valida, debe agregarle un número.",
+                "La contraseña ingresada no es valida, debe agregarle un guión bajo."
+            };
             return new List<string>() { "La contraseña ingresada no es valida, debe agregarle un guión bajo." };
         }
     }

@@ -151,9 +151,7 @@ namespace ValidacionContrasena
                 "La contraseña ingresada no es valida, debe agregarle un guión bajo."
             };
 
-            errores.Should().Equal("La contraseña ingresada no es valida, debe agregarle minusculas." +
-                "La contraseña ingresada no es valida, debe agregarle un número." +
-                "La contraseña ingresada no es valida, debe agregarle un guión bajo.");
+            errores.Should().Equal(erroresEsperados);
         }
     }
 }
