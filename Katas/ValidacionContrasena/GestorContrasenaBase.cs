@@ -50,9 +50,9 @@ namespace ValidacionContrasena
             return Contrasena.Contains("_");
         }
 
-        internal List<string> ObtenerErrores()
+        public List<string> ObtenerErrores()
         {
-            throw new NotImplementedException();
+            return new List<string>() { "La contraseña ingresada no es valida, debe agregarle un guión bajo." };
         }
     }
 }
