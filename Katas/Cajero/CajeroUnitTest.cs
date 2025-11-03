@@ -142,7 +142,6 @@ namespace CajeroDinero
             //arrange
             List<Dinero> dineroIngresado = new()
             {
-                new(200,0,Tipo.Billete),
                 new(100,2,Tipo.Billete)
             };
             var cajero = new Cajero(dineroIngresado);
@@ -242,6 +241,9 @@ namespace CajeroDinero
         public List<Dinero> Saldo { get; set; }
         public Cajero(List<Dinero> saldo)
         {
+            if (saldo.Any(dinero => dinero.Unidades <= 0))
+                throw new Exception("No se puede agregar dinero negativo con unidades negativas");
+
             LanzarExcepcionSiValorEsMenorOIgualACero(saldo);
             Saldo = saldo;
 
