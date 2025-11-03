@@ -102,6 +102,7 @@ namespace CajeroDinero
                 new(100,1,Tipo.Billete)
             };
             var cajero = new Cajero(dineroIngresado);
+            cajero.SacarDinero(1000);
             //act
             List<Dinero> dineroActual = cajero.DameElSaldo();
 
@@ -183,9 +184,9 @@ namespace CajeroDinero
             return Saldo.OrderByDescending(x => x.Valor).First(dinero => dinero.Valor <= dineroABuscar);
         }
 
-        internal List<Dinero> DameElSaldo()
+        public List<Dinero> DameElSaldo()
         {
-            throw new NotImplementedException();
+            return Saldo;
         }
     }
 }
