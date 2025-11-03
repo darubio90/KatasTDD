@@ -180,6 +180,22 @@ namespace CajeroDinero
 
             dineroActual.Should().Equal(dineroEsperado);
         }
+
+        [Fact]
+        public void SiIngresoDineroMenorACero_Debe_ReronarExcepcion()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(-500,2,Tipo.Billete),
+                new(100,10,Tipo.Billete)
+            };
+            //act
+            var excepcion = () => new Cajero(dineroIngresado);
+
+            //assert
+            excepcion.Should().Throw<Exception>().WithMessage("*No agregar dinero negativo");
+        }
     }
 
     public record Dinero
