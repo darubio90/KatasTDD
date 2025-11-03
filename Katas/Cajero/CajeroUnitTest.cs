@@ -199,6 +199,21 @@ namespace CajeroDinero
             excepcion.Should().Throw<Exception>().WithMessage("*No agregar dinero negativo");
         }
 
+        [Fact]
+        public void SiIngresoDineroConUnidadesMenorIgualACero_Debe_RetornarExcepcion()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(500,0,Tipo.Billete),
+                new(100,10,Tipo.Billete)
+            };
+            //act
+            var excepcion = () => new Cajero(dineroIngresado);
+
+            //assert
+            excepcion.Should().Throw<Exception>().WithMessage("*No se puede agregar dinero negativo con unidades negativas");
+        }
 
     }
 
