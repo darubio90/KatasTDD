@@ -223,6 +223,8 @@ namespace CajeroDinero
         public List<Dinero> Saldo { get; set; }
         public Cajero(List<Dinero> saldo)
         {
+            if (saldo.Any(x => x.Valor <= 0))
+                throw new Exception("No agregar dinero negativo");
             Saldo = saldo;
 
         }
