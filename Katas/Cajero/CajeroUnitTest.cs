@@ -39,7 +39,7 @@ namespace CajeroDinero
         }
 
         [Fact]
-        public void SiRetiro200_Debe_DevolvermeConLaMayorDenominacion()
+        public void SiRetiro200_Debe_DevolvermeUnBilleteDe200()
         {
             //arrange
             List<Dinero> dineroIngresado = new()
@@ -53,12 +53,16 @@ namespace CajeroDinero
             List<Dinero> dineroActual = cajero.SacarDinero(200);
 
             //assert
-            List<Dinero> Esperado = new()
+            List<Dinero> dineroEsperado = new()
             {
                 new(200,1,Tipo.Billete)
             };
 
+            dineroActual.Should().Equal(dineroEsperado);
         }
+
+
+
     }
 
     public record Dinero
@@ -100,9 +104,22 @@ namespace CajeroDinero
             return Saldo.Sum(x => x.Valor * x.Unidades);
         }
 
-        internal List<Dinero> SacarDinero(int v)
+        public List<Dinero> SacarDinero(int dineroSolicitado)
         {
-            throw new NotImplementedException();
+            List<Dinero> dineroAEntregar = new();
+            int dineroEntregado = 0;
+            int dineroABuscar = dineroSolicitado; ;
+
+            while (dineroEntregado < dineroSolicitado)
+            {
+                var dineroEncontrado = Saldo.OrderByDescending(x => x.Valor).First(x => x.Valor <= dineroABuscar);
+                dineroEntregado += dineroEncontrado.Valor;
+                dineroABuscar -= dineroEncontrado.Valor;
+                dineroAEntregar.Add(dineroEncontrado);
+            }
+
+            return dineroAEntregar;
         }
+
     }
 }
