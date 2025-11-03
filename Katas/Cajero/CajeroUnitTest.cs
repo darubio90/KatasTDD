@@ -115,6 +115,28 @@ namespace CajeroDinero
             dineroActual.Should().Equal(dineroEsperado);
         }
 
+        [Fact]
+        public void SiRetiro1000_Debe_RetonarExcepcionIndicandoQueNoHaySaldo()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(500,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(100,1,Tipo.Billete),
+                new(100,1,Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroIngresado);
+            cajero.SacarDinero(1000);
+            //act
+            var excepcion = () => cajero.SacarDinero(1000);
+
+            //assert
+
+            excepcion.Should().Throw<Exception>().WithMessage("*El cajero automático no dispone de dinero suficiente, por favor acuda al cajero automático más cercano");
+        }
+
     }
 
     public record Dinero
