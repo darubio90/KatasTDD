@@ -80,8 +80,7 @@ namespace CajeroDinero
             List<Dinero> dineroEsperado = new()
             {
                 new(500,1,Tipo.Billete),
-                new(200,1,Tipo.Billete),
-                new(200,1,Tipo.Billete),
+                new(200,2,Tipo.Billete),
                 new(100,1,Tipo.Billete)
             };
 
@@ -153,8 +152,7 @@ namespace CajeroDinero
             //assert
             List<Dinero> dineroEsperado = new()
             {
-                new(100,1,Tipo.Billete),
-                new(100,1,Tipo.Billete)
+                new(100,2,Tipo.Billete)
             };
 
             dineroActual.Should().Equal(dineroEsperado);
@@ -240,7 +238,10 @@ namespace CajeroDinero
                 DescontarSaldoDeCajero(dineroEncontrado);
             }
 
-            return dineroAEntregar;
+            return dineroAEntregar
+               .GroupBy(x => new { x.Tipo, x.Valor })
+               .Select(x => new Dinero(x.Key.Valor, x.Count(), x.Key.Tipo))
+               .ToList(); ;
         }
 
         private void LanzarExpcecionSiCajeroNoTieneElDineroSolicitado(int dineroSolicitado)
