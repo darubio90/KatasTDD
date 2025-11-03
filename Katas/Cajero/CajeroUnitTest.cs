@@ -142,6 +142,7 @@ namespace CajeroDinero
                 dineroEntregado += dineroEncontrado.Valor;
                 dineroABuscar -= dineroEncontrado.Valor;
                 dineroAEntregar.Add(dineroEncontrado);
+                Saldo.Remove(dineroEncontrado);
             }
 
             return dineroAEntregar;
