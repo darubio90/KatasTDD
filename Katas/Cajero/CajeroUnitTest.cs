@@ -142,10 +142,15 @@ namespace CajeroDinero
                 dineroEntregado += dineroEncontrado.Valor;
                 dineroABuscar -= dineroEncontrado.Valor;
                 dineroAEntregar.Add(dineroEncontrado);
-                Saldo.Remove(dineroEncontrado);
+                DescontarSaldoDeCajero(dineroEncontrado);
             }
 
             return dineroAEntregar;
+        }
+
+        private void DescontarSaldoDeCajero(Dinero dineroEncontrado)
+        {
+            Saldo.Remove(dineroEncontrado);
         }
 
         private Dinero BuscarDinero(int dineroABuscar)
