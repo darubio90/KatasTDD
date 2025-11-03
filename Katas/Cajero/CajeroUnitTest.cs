@@ -89,6 +89,31 @@ namespace CajeroDinero
         }
 
 
+        [Fact]
+        public void SiRetiro1000_Debe_DevolvermeSaldoDespuesDeRetiro()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(500,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(100,1,Tipo.Billete),
+                new(100,1,Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroIngresado);
+            //act
+            List<Dinero> dineroActual = cajero.DameElSaldo();
+
+            //assert
+            List<Dinero> dineroEsperado = new()
+            {
+                new(100,1,Tipo.Billete)
+            };
+
+            dineroActual.Should().Equal(dineroEsperado);
+        }
+
     }
 
     public record Dinero
@@ -156,6 +181,11 @@ namespace CajeroDinero
         private Dinero BuscarDinero(int dineroABuscar)
         {
             return Saldo.OrderByDescending(x => x.Valor).First(dinero => dinero.Valor <= dineroABuscar);
+        }
+
+        internal List<Dinero> DameElSaldo()
+        {
+            throw new NotImplementedException();
         }
     }
 }
