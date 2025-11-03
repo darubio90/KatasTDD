@@ -198,14 +198,16 @@ namespace CajeroDinero
             excepcion.Should().Throw<Exception>().WithMessage("*No agregar dinero negativo");
         }
 
-        [Fact]
-        public void SiIngresoDineroConUnidadesMenorIgualACero_Debe_RetornarExcepcion()
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public void SiIngresoDineroConUnidadesMenorIgualACero_Debe_RetornarExcepcion(int unidad)
         {
             //arrange
             List<Dinero> dineroIngresado = new()
             {
-                new(500,0,Tipo.Billete),
-                new(100,10,Tipo.Billete)
+                new(500,unidad,Tipo.Billete),
+                new(100,unidad,Tipo.Billete)
             };
             //act
             var excepcion = () => new Cajero(dineroIngresado);
@@ -241,12 +243,15 @@ namespace CajeroDinero
         public List<Dinero> Saldo { get; set; }
         public Cajero(List<Dinero> saldo)
         {
-            if (saldo.Any(dinero => dinero.Unidades <= 0))
-                throw new Exception("No se puede agregar dinero negativo con unidades negativas");
-
+            LanzarExcepcionSiUnidadEsMenorOIgualACero(saldo);
             LanzarExcepcionSiValorEsMenorOIgualACero(saldo);
             Saldo = saldo;
+        }
 
+        private static void LanzarExcepcionSiUnidadEsMenorOIgualACero(List<Dinero> saldo)
+        {
+            if (saldo.Any(dinero => dinero.Unidades <= 0))
+                throw new Exception("No se puede agregar dinero negativo con unidades negativas");
         }
 
         private static void LanzarExcepcionSiValorEsMenorOIgualACero(List<Dinero> saldo)
