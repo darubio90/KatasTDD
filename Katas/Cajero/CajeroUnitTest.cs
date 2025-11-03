@@ -37,6 +37,28 @@ namespace CajeroDinero
             tieneDinero.Should().BeFalse();
 
         }
+
+        [Fact]
+        public void SiRetiro200_Debe_DevolvermeConLaMayorDenominacion()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(200,1,Tipo.Billete),
+                new(100,1,Tipo.Billete),
+                new(100,1,Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroIngresado);
+            //act
+            List<Dinero> dineroActual = cajero.SacarDinero(200);
+
+            //assert
+            List<Dinero> Esperado = new()
+            {
+                new(200,1,Tipo.Billete)
+            };
+
+        }
     }
 
     public record Dinero
@@ -76,6 +98,11 @@ namespace CajeroDinero
         private int SaldoCajero()
         {
             return Saldo.Sum(x => x.Valor * x.Unidades);
+        }
+
+        internal List<Dinero> SacarDinero(int v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
