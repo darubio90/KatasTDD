@@ -237,11 +237,15 @@ namespace CajeroDinero
                 dineroAEntregar.Add(new(dineroEncontrado.Valor, 1, dineroEncontrado.Tipo));
                 DescontarSaldoDeCajero(dineroEncontrado);
             }
+            return EntregarDineroAgrupadoPorTipoYValor(dineroAEntregar);
+        }
 
+        private static List<Dinero> EntregarDineroAgrupadoPorTipoYValor(List<Dinero> dineroAEntregar)
+        {
             return dineroAEntregar
-               .GroupBy(x => new { x.Tipo, x.Valor })
-               .Select(x => new Dinero(x.Key.Valor, x.Count(), x.Key.Tipo))
-               .ToList(); ;
+               .GroupBy(dinero => new { dinero.Tipo, dinero.Valor })
+               .Select(dinero => new Dinero(dinero.Key.Valor, dinero.Count(), dinero.Key.Tipo))
+               .ToList();
         }
 
         private void LanzarExpcecionSiCajeroNoTieneElDineroSolicitado(int dineroSolicitado)
@@ -252,9 +256,18 @@ namespace CajeroDinero
 
         private void DescontarSaldoDeCajero(Dinero dineroEncontrado)
         {
+            DescontarUnidadDinero(dineroEncontrado);
+            RemoverDineroQueNoTieneUnidades();
+        }
+
+        private void DescontarUnidadDinero(Dinero dineroEncontrado)
+        {
             Saldo.Remove(dineroEncontrado);
             Saldo.Add(new Dinero(dineroEncontrado.Valor, dineroEncontrado.Unidades - 1, dineroEncontrado.Tipo));
+        }
 
+        private void RemoverDineroQueNoTieneUnidades()
+        {
             Saldo.RemoveAll(x => x.Unidades == 0);
         }
 
