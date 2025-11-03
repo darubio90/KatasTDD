@@ -137,7 +137,6 @@ namespace CajeroDinero
             excepcion.Should().Throw<Exception>().WithMessage("*El cajero automático no dispone de dinero suficiente, por favor acuda al cajero automático más cercano");
         }
 
-
         [Fact]
         public void SiRetiro200_Debe_DevolverConElDineroQueTengaUnidadesDisponibles()
         {
@@ -160,6 +159,7 @@ namespace CajeroDinero
 
             dineroActual.Should().Equal(dineroEsperado);
         }
+
 
     }
 
@@ -215,7 +215,7 @@ namespace CajeroDinero
                 Dinero dineroEncontrado = BuscarDinero(dineroABuscar);
                 dineroEntregado += dineroEncontrado.Valor;
                 dineroABuscar -= dineroEncontrado.Valor;
-                dineroAEntregar.Add(dineroEncontrado);
+                dineroAEntregar.Add(new(dineroEncontrado.Valor, 1, dineroEncontrado.Tipo));
                 DescontarSaldoDeCajero(dineroEncontrado);
             }
 
@@ -231,13 +231,16 @@ namespace CajeroDinero
         private void DescontarSaldoDeCajero(Dinero dineroEncontrado)
         {
             Saldo.Remove(dineroEncontrado);
+            Saldo.Add(new Dinero(dineroEncontrado.Valor, dineroEncontrado.Unidades - 1, dineroEncontrado.Tipo));
+
+            Saldo.RemoveAll(x => x.Unidades == 0);
         }
 
         private Dinero BuscarDinero(int dineroABuscar)
         {
             return Saldo
                 .OrderByDescending(dinero => dinero.Valor)
-                .First(dinero => dinero.Valor <= dineroABuscar);
+                .First(dinero => dinero.Valor <= dineroABuscar && dinero.Unidades > 0);
         }
 
         public List<Dinero> DameElSaldo()
