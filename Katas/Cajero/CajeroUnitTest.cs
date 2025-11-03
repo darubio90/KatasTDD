@@ -70,9 +70,12 @@ namespace CajeroDinero
 
         public bool TieneDinero()
         {
-            if (Saldo.Count == 0)
-                return false;
-            return true;
+            return SaldoCajero() > 0;
+        }
+
+        private int SaldoCajero()
+        {
+            return Saldo.Sum(x => x.Valor * x.Unidades);
         }
     }
 }
