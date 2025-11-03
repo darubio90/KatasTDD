@@ -54,7 +54,7 @@ namespace CajeroDinero
 
         public bool TieneDinero()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
