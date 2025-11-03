@@ -180,8 +180,7 @@ namespace CajeroDinero
 
         public List<Dinero> SacarDinero(int dineroSolicitado)
         {
-            if (dineroSolicitado > SaldoCajero())
-                throw new Exception("El cajero automático no dispone de dinero suficiente, por favor acuda al cajero automático más cercano");
+            LanzarExpcecionSiCajeroNoTieneElDineroSolicitado(dineroSolicitado);
 
             List<Dinero> dineroAEntregar = new();
             int dineroEntregado = 0;
@@ -199,6 +198,12 @@ namespace CajeroDinero
             return dineroAEntregar;
         }
 
+        private void LanzarExpcecionSiCajeroNoTieneElDineroSolicitado(int dineroSolicitado)
+        {
+            if (dineroSolicitado > SaldoCajero())
+                throw new Exception("El cajero automático no dispone de dinero suficiente, por favor acuda al cajero automático más cercano");
+        }
+
         private void DescontarSaldoDeCajero(Dinero dineroEncontrado)
         {
             Saldo.Remove(dineroEncontrado);
@@ -206,7 +211,9 @@ namespace CajeroDinero
 
         private Dinero BuscarDinero(int dineroABuscar)
         {
-            return Saldo.OrderByDescending(x => x.Valor).First(dinero => dinero.Valor <= dineroABuscar);
+            return Saldo
+                .OrderByDescending(dinero => dinero.Valor)
+                .First(dinero => dinero.Valor <= dineroABuscar);
         }
 
         public List<Dinero> DameElSaldo()
