@@ -62,7 +62,6 @@ namespace CajeroDinero
         }
 
 
-
     }
 
     public record Dinero
@@ -112,7 +111,7 @@ namespace CajeroDinero
 
             while (dineroEntregado < dineroSolicitado)
             {
-                var dineroEncontrado = Saldo.OrderByDescending(x => x.Valor).First(x => x.Valor <= dineroABuscar);
+                Dinero dineroEncontrado = BuscarDinero(dineroABuscar);
                 dineroEntregado += dineroEncontrado.Valor;
                 dineroABuscar -= dineroEncontrado.Valor;
                 dineroAEntregar.Add(dineroEncontrado);
@@ -121,5 +120,9 @@ namespace CajeroDinero
             return dineroAEntregar;
         }
 
+        private Dinero BuscarDinero(int dineroABuscar)
+        {
+            return Saldo.OrderByDescending(x => x.Valor).First(dinero => dinero.Valor <= dineroABuscar);
+        }
     }
 }
