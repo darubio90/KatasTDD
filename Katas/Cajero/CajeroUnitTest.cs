@@ -180,6 +180,9 @@ namespace CajeroDinero
 
         public List<Dinero> SacarDinero(int dineroSolicitado)
         {
+            if (dineroSolicitado > SaldoCajero())
+                throw new Exception("El cajero automático no dispone de dinero suficiente, por favor acuda al cajero automático más cercano");
+
             List<Dinero> dineroAEntregar = new();
             int dineroEntregado = 0;
             int dineroABuscar = dineroSolicitado; ;
