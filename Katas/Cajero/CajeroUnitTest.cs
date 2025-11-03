@@ -61,6 +61,33 @@ namespace CajeroDinero
             dineroActual.Should().Equal(dineroEsperado);
         }
 
+        [Fact]
+        public void SiRetiro1000_Debe_DevolvermeUnBilleteDe500DosDe200UnoDe100()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(500,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(100,1,Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroIngresado);
+            //act
+            List<Dinero> dineroActual = cajero.SacarDinero(1000);
+
+            //assert
+            List<Dinero> dineroEsperado = new()
+            {
+                new(500,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(200,1,Tipo.Billete),
+                new(100,1,Tipo.Billete)
+            };
+
+            dineroActual.Should().Equal(dineroEsperado);
+        }
+
 
     }
 
