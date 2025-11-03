@@ -21,6 +21,22 @@ namespace CajeroDinero
             tieneDinero.Should().BeTrue();
 
         }
+
+        [Fact]
+        public void ElCajero_Debe_CrearseSinDinero()
+        {
+            List<Dinero> dineroIngresado = new()
+            {
+            };
+            //arrange
+            var cajero = new Cajero(dineroIngresado);
+
+            //act
+            bool tieneDinero = cajero.TieneDinero();
+            //assert
+            tieneDinero.Should().BeFalse();
+
+        }
     }
 
     public record Dinero
