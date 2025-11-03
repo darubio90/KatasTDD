@@ -160,7 +160,28 @@ namespace CajeroDinero
             dineroActual.Should().Equal(dineroEsperado);
         }
 
+        [Fact]
+        public void SiRetiro1000_Debe_DevolverDiezBilletesDe100()
+        {
+            //arrange
+            List<Dinero> dineroIngresado = new()
+            {
+                new(500,2,Tipo.Billete),
+                new(100,10,Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroIngresado);
+            cajero.SacarDinero(1000);
+            //act
+            List<Dinero> dineroActual = cajero.SacarDinero(1000);
 
+            //assert
+            List<Dinero> dineroEsperado = new()
+            {
+                new(100,10,Tipo.Billete)
+            };
+
+            dineroActual.Should().Equal(dineroEsperado);
+        }
     }
 
     public record Dinero
