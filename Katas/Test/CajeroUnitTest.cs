@@ -80,7 +80,7 @@ namespace Test
             var excepcion = () => cajero.Retirar(1000);
 
             //assert
-            excepcion.Should().Throw<Exception>().WithMessage("El cajero no tiene saldo suficiente para el dinero solicitado");
+            excepcion.Should().Throw<Exception>().WithMessage("*El cajero no tiene saldo suficiente para el dinero solicitado");
         }
     }
 
@@ -113,6 +113,9 @@ namespace Test
 
         public List<Dinero> Retirar(int dineroSolicitado)
         {
+            if (dineroSolicitado > Saldo.Sum(x => x.Valor * x.Unidad))
+                throw new Exception("El cajero no tiene saldo suficiente para el dinero solicitado");
+
             int dineroQueFalta = dineroSolicitado;
             while (dineroQueFalta != 0)
             {
