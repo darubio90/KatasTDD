@@ -5,7 +5,7 @@ namespace Test
     public class CajeroUnitTest
     {
         [Fact]
-        public void Si_Solicito1000AlCajero_Debe_DevolverBilleteDe1000()
+        public void Si_Solicito500AlCajero_Debe_DevolverBilleteDe500()
         {
 
             //arrange
@@ -40,9 +40,9 @@ namespace Test
             };
         }
 
-        internal List<Dinero> Retirar(int v)
+        public List<Dinero> Retirar(int dineroSolicitado)
         {
-            throw new NotImplementedException();
+            return Saldo.Where(x => x.Valor == dineroSolicitado).ToList();
         }
     }
 
