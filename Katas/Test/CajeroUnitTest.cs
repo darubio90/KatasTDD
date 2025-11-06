@@ -65,7 +65,7 @@ namespace Test
             List<Dinero> dineroAEntregar = new List<Dinero>();
             while (dineroQueFalta != 0)
             {
-                var dineroEncontrado = Saldo.Where(x => x.Valor <= dineroQueFalta).First();
+                Dinero dineroEncontrado = Saldo.First(x => x.Valor <= dineroQueFalta);
                 dineroAEntregar.Add(dineroEncontrado);
                 dineroQueFalta -= dineroEncontrado.Valor;
             }
@@ -83,9 +83,9 @@ namespace Test
             Tipo = tipo;
         }
 
-        public int Valor { get; set; }
-        public int Unidad { get; set; }
-        public Tipo Tipo { get; set; }
+        public int Valor { get; }
+        public int Unidad { get; }
+        public Tipo Tipo { get; }
     }
 
     public enum Tipo
