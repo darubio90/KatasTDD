@@ -44,7 +44,14 @@ namespace Test
         {
 
             //arrange
-            var cajero = new Cajero();
+            List<Dinero> dineroInicial = new()
+            {
+                new(500, 3, Tipo.Billete),
+                new(200, 1, Tipo.Billete),
+                new(20, 1, Tipo.Billete),
+                new(5, 1, Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroInicial);
             //act
             List<Dinero> dineroActual = cajero.Retirar(1725);
 
@@ -63,6 +70,7 @@ namespace Test
 
     public class Cajero
     {
+
         private List<Dinero> Saldo { get; }
         public Cajero()
         {
@@ -81,6 +89,11 @@ namespace Test
             };
         }
 
+        public Cajero(List<Dinero> saldo)
+        {
+            Saldo = saldo;
+        }
+
         public List<Dinero> Retirar(int dineroSolicitado)
         {
             int dineroQueFalta = dineroSolicitado;
@@ -88,11 +101,14 @@ namespace Test
             while (dineroQueFalta != 0)
             {
                 Dinero dineroEncontrado = Saldo.First(x => x.Valor <= dineroQueFalta);
-                dineroAEntregar.Add(dineroEncontrado);
+                dineroAEntregar.Add(new Dinero(dineroEncontrado.Valor, 1, dineroEncontrado.Tipo));
                 dineroQueFalta -= dineroEncontrado.Valor;
             }
 
-            return dineroAEntregar;
+            return dineroAEntregar
+                .GroupBy(x => new { x.Valor, x.Tipo })
+                .Select(x => new Dinero(x.Key.Valor, x.Count(), x.Key.Tipo))
+                .ToList();
         }
     }
 
