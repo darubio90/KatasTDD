@@ -72,6 +72,7 @@ namespace Test
     {
 
         private List<Dinero> Saldo { get; }
+        private List<Dinero> DineroAEntregar { get; } = new List<Dinero>();
         public Cajero()
         {
             Saldo = new List<Dinero>()
@@ -97,18 +98,27 @@ namespace Test
         public List<Dinero> Retirar(int dineroSolicitado)
         {
             int dineroQueFalta = dineroSolicitado;
-            List<Dinero> dineroAEntregar = new List<Dinero>();
             while (dineroQueFalta != 0)
             {
-                Dinero dineroEncontrado = Saldo.First(x => x.Valor <= dineroQueFalta);
-                dineroAEntregar.Add(new Dinero(dineroEncontrado.Valor, 1, dineroEncontrado.Tipo));
+                Dinero dineroEncontrado = BuscarDineroDeIgualOMenorDenominacion(dineroQueFalta);
+                AgregarDinero(dineroEncontrado);
                 dineroQueFalta -= dineroEncontrado.Valor;
             }
 
-            return dineroAEntregar
+            return DineroAEntregar
                 .GroupBy(x => new { x.Valor, x.Tipo })
                 .Select(x => new Dinero(x.Key.Valor, x.Count(), x.Key.Tipo))
                 .ToList();
+        }
+
+        private void AgregarDinero(Dinero dineroEncontrado)
+        {
+            DineroAEntregar.Add(new Dinero(dineroEncontrado.Valor, 1, dineroEncontrado.Tipo));
+        }
+
+        private Dinero BuscarDineroDeIgualOMenorDenominacion(int dineroQueFalta)
+        {
+            return Saldo.First(x => x.Valor <= dineroQueFalta);
         }
     }
 
