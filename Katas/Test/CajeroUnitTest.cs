@@ -66,6 +66,22 @@ namespace Test
 
             dineroActual.Should().Equal(dineroEsperado);
         }
+
+        [Fact]
+        public void Si_Solicito1000AlCajeroYNoLosTieneDisponibles_Debe_LanzaExcePcion()
+        {
+            //arrange
+            List<Dinero> dineroInicial = new()
+            {
+                new(500, 1, Tipo.Billete),
+            };
+            var cajero = new Cajero(dineroInicial);
+            //act
+            var excepcion = () => cajero.Retirar(1000);
+
+            //assert
+            excepcion.Should().Throw<Exception>().WithMessage("El cajero no tiene saldo suficiente para el dinero solicitado");
+        }
     }
 
     public class Cajero
