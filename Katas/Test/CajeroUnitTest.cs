@@ -37,6 +37,28 @@ namespace Test
 
             dineroActual.Should().Equal(dineroEsperado);
         }
+
+
+        [Fact]
+        public void Si_Solicito1725AlCajero_Debe_DevolverTresBilletesDe500UnoDe200UnoDe20UnoDe5()
+        {
+
+            //arrange
+            var cajero = new Cajero();
+            //act
+            List<Dinero> dineroActual = cajero.Retirar(1725);
+
+            //assert
+            List<Dinero> dineroEsperado = new()
+            {
+                new(500, 3, Tipo.Billete),
+                new(200, 1, Tipo.Billete),
+                new(20, 1, Tipo.Billete),
+                new(5, 1, Tipo.Billete)
+            };
+
+            dineroActual.Should().Equal(dineroEsperado);
+        }
     }
 
     public class Cajero
