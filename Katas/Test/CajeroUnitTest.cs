@@ -68,7 +68,7 @@ namespace Test
         }
 
         [Fact]
-        public void Si_Solicito1000AlCajeroYNoLosTieneDisponibles_Debe_LanzaExcePcion()
+        public void Si_Solicito1000AlCajeroYNoLosTieneDisponibles_Debe_LanzaExcepcion()
         {
             //arrange
             List<Dinero> dineroInicial = new()
@@ -113,8 +113,7 @@ namespace Test
 
         public List<Dinero> Retirar(int dineroSolicitado)
         {
-            if (dineroSolicitado > Saldo.Sum(x => x.Valor * x.Unidad))
-                throw new Exception("El cajero no tiene saldo suficiente para el dinero solicitado");
+            LanzarExcepcionSiElCajeroNoTieneSaldoParaElDineroSolicitado(dineroSolicitado);
 
             int dineroQueFalta = dineroSolicitado;
             while (dineroQueFalta != 0)
@@ -128,6 +127,17 @@ namespace Test
                 .GroupBy(x => new { x.Valor, x.Tipo })
                 .Select(x => new Dinero(x.Key.Valor, x.Count(), x.Key.Tipo))
                 .ToList();
+        }
+
+        private void LanzarExcepcionSiElCajeroNoTieneSaldoParaElDineroSolicitado(int dineroSolicitado)
+        {
+            if (dineroSolicitado > SaldoCajero())
+                throw new Exception("El cajero no tiene saldo suficiente para el dinero solicitado");
+        }
+
+        private int SaldoCajero()
+        {
+            return Saldo.Sum(x => x.Valor * x.Unidad);
         }
 
         private void AgregarDinero(Dinero dineroEncontrado)
