@@ -61,7 +61,16 @@ namespace Test
 
         public List<Dinero> Retirar(int dineroSolicitado)
         {
-            return Saldo.Where(x => x.Valor == dineroSolicitado).ToList();
+            int dineroQueFalta = dineroSolicitado;
+            List<Dinero> dineroAEntregar = new List<Dinero>();
+            while (dineroQueFalta != 0)
+            {
+                var dineroEncontrado = Saldo.Where(x => x.Valor <= dineroQueFalta).First();
+                dineroAEntregar.Add(dineroEncontrado);
+                dineroQueFalta -= dineroEncontrado.Valor;
+            }
+
+            return dineroAEntregar;
         }
     }
 
