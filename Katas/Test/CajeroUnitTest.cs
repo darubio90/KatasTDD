@@ -170,7 +170,9 @@ namespace Test
 
         private Dinero BuscarDineroDeIgualOMenorDenominacion(int dineroQueFalta)
         {
-            return Saldo.First(x => x.Valor <= dineroQueFalta);
+            return Saldo
+                .OrderByDescending(x => x.Valor)
+                .First(x => x.Valor <= dineroQueFalta);
         }
     }
 
