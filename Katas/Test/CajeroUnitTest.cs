@@ -147,8 +147,8 @@ namespace Test
             }
 
             return DineroAEntregar
-                .GroupBy(x => new { x.Valor, x.Tipo })
-                .Select(x => new Dinero(x.Key.Valor, x.Count(), x.Key.Tipo))
+                .GroupBy(dinero => new { dinero.Valor, dinero.Tipo })
+                .Select(dinero => new Dinero(dinero.Key.Valor, dinero.Count(), dinero.Key.Tipo))
                 .ToList();
         }
 
@@ -160,7 +160,7 @@ namespace Test
 
         private int SaldoCajero()
         {
-            return Saldo.Sum(x => x.Valor * x.Unidad);
+            return Saldo.Sum(dinero => dinero.Valor * dinero.Unidad);
         }
 
         private void AgregarDinero(Dinero dineroEncontrado)
@@ -171,8 +171,8 @@ namespace Test
         private Dinero BuscarDineroDeIgualOMenorDenominacion(int dineroQueFalta)
         {
             return Saldo
-                .OrderByDescending(x => x.Valor)
-                .First(x => x.Valor <= dineroQueFalta);
+                .OrderByDescending(dinero => dinero.Valor)
+                .First(dinero => dinero.Valor <= dineroQueFalta);
         }
     }
 
