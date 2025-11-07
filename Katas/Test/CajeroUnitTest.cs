@@ -82,6 +82,29 @@ namespace Test
             //assert
             excepcion.Should().Throw<Exception>().WithMessage("*El cajero no tiene saldo suficiente para el dinero solicitado");
         }
+
+        [Fact]
+        public void Si_Solicito500AlCajero_Debe_DevolverLos500ConBilleteDeMayorDenominacion()
+        {
+
+            //arrange
+            List<Dinero> dineroInicial = new()
+            {
+                new(100, 1, Tipo.Billete),
+                new(500, 1, Tipo.Billete)
+            };
+            var cajero = new Cajero(dineroInicial);
+            //act
+            List<Dinero> dineroActual = cajero.Retirar(500);
+
+            //assert
+            List<Dinero> dineroEsperado = new()
+            {
+                new(500, 1, Tipo.Billete)
+            };
+
+            dineroActual.Should().Equal(dineroEsperado);
+        }
     }
 
     public class Cajero
