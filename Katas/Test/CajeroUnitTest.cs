@@ -107,7 +107,7 @@ namespace Test
         }
 
         [Fact]
-        public void Si_Solicito900AlCajero_Debe_DevolverUnBilleteDe500DosDe200UnoDe100()
+        public void Si_Solicito900AlCajero_Debe_DevolverUnBilleteDe500DosDe200()
         {
 
             //arrange
@@ -139,7 +139,7 @@ namespace Test
     {
 
         private List<Dinero> Saldo { get; }
-        private List<Dinero> DineroAEntregar { get; } = new List<Dinero>();
+        private List<Dinero> DineroAEntregar { get; set; }
         public Cajero()
         {
             Saldo = new List<Dinero>()
@@ -165,12 +165,14 @@ namespace Test
         public List<Dinero> Retirar(int dineroSolicitado)
         {
             LanzarExcepcionSiElCajeroNoTieneSaldoParaElDineroSolicitado(dineroSolicitado);
+            InicializarDineroAEntregar();
 
             int dineroQueFalta = dineroSolicitado;
             while (dineroQueFalta != 0)
             {
                 Dinero dineroEncontrado = BuscarDineroDeIgualOMenorDenominacion(dineroQueFalta);
                 AgregarDinero(dineroEncontrado);
+                DescontarDinero(dineroEncontrado);
                 dineroQueFalta -= dineroEncontrado.Valor;
             }
 
@@ -178,6 +180,17 @@ namespace Test
                 .GroupBy(dinero => new { dinero.Valor, dinero.Tipo })
                 .Select(dinero => new Dinero(dinero.Key.Valor, dinero.Count(), dinero.Key.Tipo))
                 .ToList();
+        }
+
+        private void InicializarDineroAEntregar()
+        {
+            DineroAEntregar = new();
+        }
+
+        private void DescontarDinero(Dinero dineroEncontrado)
+        {
+            Saldo.Remove(dineroEncontrado);
+            Saldo.Add(new(dineroEncontrado.Valor, dineroEncontrado.Unidad - 1, dineroEncontrado.Tipo));
         }
 
         private void LanzarExcepcionSiElCajeroNoTieneSaldoParaElDineroSolicitado(int dineroSolicitado)
@@ -200,6 +213,7 @@ namespace Test
         {
             return Saldo
                 .OrderByDescending(dinero => dinero.Valor)
+                .Where(dinero => dinero.Unidad > 0)
                 .First(dinero => dinero.Valor <= dineroQueFalta);
         }
     }
