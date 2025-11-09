@@ -34,10 +34,15 @@ namespace Supermercado
 
         public static Producto Crear(string nombre, decimal valor)
         {
-            if (valor < 0)
-                throw new Exception("El producto no puede crearse con valor negativo");
+            LanzarExcepcionSinValorEsNegativo(valor);
             LanzarExcepcionSiNombreEsNuloOVacio(nombre);
             return new Producto(nombre, valor);
+        }
+
+        private static void LanzarExcepcionSinValorEsNegativo(decimal valor)
+        {
+            if (valor < 0)
+                throw new Exception("El producto no puede crearse con valor negativo");
         }
 
         private Producto(string nombre, decimal precio)
