@@ -2,20 +2,16 @@
 
 namespace Supermercado
 {
-    public class SuperMercadoUnitTest
+    public class ProductoUnitTest
     {
-        [Fact]
-        public void Si_CreoProductoConNombreVacio_Debe_LanzarExpcecion()
-        {
-            var excepcion = () => Producto.Crear("", 1000);
 
-            excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse sin nombre");
-        }
-
-        [Fact]
-        public void Si_CreoProductoConNombreConEspacios_Debe_LanzarExpcecion()
+        [Theory]
+        [InlineData("")]
+        [InlineData("    ")]
+        [InlineData(null)]
+        public void Si_CreoProductoConNombreNoValido_Debe_LanzarExpcecion(string nombre)
         {
-            var excepcion = () => Producto.Crear("    ", 1000);
+            var excepcion = () => Producto.Crear(nombre, 1000);
 
             excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse sin nombre");
         }
