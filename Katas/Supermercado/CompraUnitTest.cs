@@ -41,6 +41,9 @@ namespace Supermercado
         {
             if (cantidad < 0)
                 throw new Exception("La cantidad no puede ser negativa");
+
+            if (cantidad == 0)
+                throw new Exception("La cantidad no puede ser cero");
         }
     }
 }
