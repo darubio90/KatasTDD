@@ -11,6 +11,14 @@ namespace Supermercado
 
             excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse sin nombre");
         }
+
+        [Fact]
+        public void Si_CreoProductoConNombreConEspacios_Debe_LanzarExpcecion()
+        {
+            var excepcion = () => Producto.Crear("    ", 1000);
+
+            excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse sin nombre");
+        }
     }
 
     public class Producto
