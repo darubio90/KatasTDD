@@ -24,6 +24,14 @@ namespace Supermercado
 
             excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse con valor negativo");
         }
+
+        [Fact]
+        public void Si_CreoProductorConValorEnCero_Debe_LanzarExcepcion()
+        {
+            var excepcion = () => Producto.Crear("Huevos", 0);
+
+            excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse con valor negativo");
+        }
     }
 
     public class Producto
