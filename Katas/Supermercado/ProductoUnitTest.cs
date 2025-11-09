@@ -42,17 +42,18 @@ namespace Supermercado
 
         public static Producto Crear(string nombre, decimal valor)
         {
-            LanzarExcepcionSinValorEsNegativo(valor);
+            LanzarExcepcionSinValorNoEsValido(valor);
             LanzarExcepcionSiNombreEsNuloOVacio(nombre);
             return new Producto(nombre, valor);
         }
 
-        private static void LanzarExcepcionSinValorEsNegativo(decimal valor)
+        private static void LanzarExcepcionSinValorNoEsValido(decimal valor)
         {
-            if (valor < 0)
+            const int cero = 0;
+            if (valor < cero)
                 throw new Exception("El producto no puede crearse con valor negativo");
 
-            if (valor == 0)
+            if (valor == cero)
                 throw new Exception("El producto no puede crearse con valor en cero");
         }
 
