@@ -41,7 +41,7 @@ namespace Supermercado
 
         private static void LanzarExcepcionSiNombreEsNuloOVacio(string nombre)
         {
-            if (string.IsNullOrEmpty(nombre))
+            if (string.IsNullOrWhiteSpace(nombre))
                 throw new Exception("El producto no puede crearse sin nombre");
         }
     }
