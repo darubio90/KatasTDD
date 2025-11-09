@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Supermercado
 {
@@ -14,6 +15,14 @@ namespace Supermercado
             var excepcion = () => Producto.Crear(nombre, 1000);
 
             excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse sin nombre");
+        }
+
+        [Fact]
+        public void Si_CreoProductorConValorNegativo_Debe_LanzarExcepcion()
+        {
+            var excepcion = () => Producto.Crear("Huevos", -1000);
+
+            excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede crearse con valor negativo");
         }
     }
 
