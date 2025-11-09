@@ -13,6 +13,15 @@ namespace Supermercado
             excepcion.Should().Throw<Exception>().WithMessage("*La cantidad no puede ser negativa");
         }
 
+        [Fact]
+        public void Si_CreoCompraConCantidadEnCero_Debe_LanzarExcepcion()
+        {
+            var producto = Producto.Crear("Leche", 5000);
+            var excepcion = () => new Compra(producto, 0);
+
+            excepcion.Should().Throw<Exception>().WithMessage("*La cantidad no puede ser cero");
+        }
+
     }
 
     public class Compra
