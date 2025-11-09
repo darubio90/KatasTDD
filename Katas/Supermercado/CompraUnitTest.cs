@@ -22,11 +22,16 @@ namespace Supermercado
 
         public Compra(Producto producto, int cantidad)
         {
-            if (cantidad < 0)
-                throw new Exception("La cantidad no puede ser negativa");
+            LanzarExcepcionSiCantidadEsNegativa(cantidad);
 
             Producto = producto;
             Cantidad = cantidad;
+        }
+
+        private static void LanzarExcepcionSiCantidadEsNegativa(int cantidad)
+        {
+            if (cantidad < 0)
+                throw new Exception("La cantidad no puede ser negativa");
         }
     }
 }
