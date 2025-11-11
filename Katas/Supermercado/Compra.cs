@@ -4,6 +4,7 @@
     {
         private Producto Producto { get; }
         private int Cantidad { get; }
+        public decimal Total { get; internal set; }
 
         public static Compra Crear(Producto producto, int cantidad)
         {
@@ -31,6 +32,11 @@
 
             if (cantidad == 0)
                 throw new Exception("La cantidad no puede ser cero");
+        }
+
+        internal void CalcularTotal()
+        {
+            throw new NotImplementedException();
         }
     }
 }

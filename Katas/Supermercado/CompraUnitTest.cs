@@ -30,5 +30,18 @@ namespace Supermercado
 
             excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede ser nulo");
         }
+
+
+        [Fact]
+        public void Si_CreoCompraUnCepillo_Debe_DarmeElPrecioPorUnidad()
+        {
+            var producto = Producto.Crear("Cepillo", 0.99m);
+            var compra = Compra.Crear(producto, 1);
+            compra.CalcularTotal();
+
+            decimal total = compra.Total;
+
+            total.Should().Be(0.99m);
+        }
     }
 }
