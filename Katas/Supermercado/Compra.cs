@@ -40,18 +40,13 @@
             if (Producto.Nombre == "Cepillo")
                 Calcular2X1();
             else if (Producto.Nombre == "Manzana")
-                Calcular20PorCientoDescuento();
+                CalcularConDescuento(0.2m);
             else
-            {
-                const decimal porcentajeDescuento = 0.1m;
-                decimal multiplicadorPorcentaje = 1 - porcentajeDescuento;
-                Total = ((int)Cantidad * Producto.Precio * multiplicadorPorcentaje) + ((Cantidad - (int)Cantidad) * Producto.Precio);
-            }
+                CalcularConDescuento(0.1m);
         }
 
-        private void Calcular20PorCientoDescuento()
+        private void CalcularConDescuento(decimal porcentajeDescuento)
         {
-            const decimal porcentajeDescuento = 0.2m;
             decimal multiplicadorPorcentaje = 1 - porcentajeDescuento;
             Total = ((int)Cantidad * Producto.Precio * multiplicadorPorcentaje) + ((Cantidad - (int)Cantidad) * Producto.Precio);
         }
