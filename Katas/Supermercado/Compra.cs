@@ -39,8 +39,12 @@
         {
             if (Producto.Nombre == "Cepillo")
                 Calcular2X1();
-            else
+            else if (Producto.Nombre == "Manzana")
                 Calcular20PorCientoDescuento();
+            else
+            {
+                Total = Cantidad * Producto.Precio * 0.9m;
+            }
         }
 
         private void Calcular20PorCientoDescuento()
