@@ -43,8 +43,15 @@
             {
                 if (Cantidad == 1)
                     Total = (Cantidad * Producto.Precio) * 0.8m;
-                else
+                else if (Cantidad == 0.5m)
                     Total = Cantidad * Producto.Precio;
+                else
+                {
+                    int parteEntera = (int)Cantidad;
+                    decimal parteDecimal = Cantidad - parteEntera;
+                    Total = (parteEntera * Producto.Precio * 0.8m) + (parteDecimal * Producto.Precio);
+                }
+
 
             }
         }
