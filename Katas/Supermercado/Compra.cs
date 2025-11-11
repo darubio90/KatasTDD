@@ -41,9 +41,13 @@
             {
                 Total = Producto.Precio * 1;
             }
-            else
+            else if (Cantidad == 1)
             {
                 Total = Producto.Precio * Cantidad;
+            }
+            else
+            {
+                Total = Producto.Precio * 2;
             }
         }
     }

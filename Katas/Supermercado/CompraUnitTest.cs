@@ -63,7 +63,7 @@ namespace Supermercado
         public void Si_ComproCuatroCepillos_Debe_DarmeCuatroCepilloYCobrarDos()
         {
             var producto = Producto.Crear("Cepillo", 0.99m);
-            var compra = Compra.Crear(producto, 3);
+            var compra = Compra.Crear(producto, 4);
             compra.CalcularTotal();
 
             decimal total = compra.Total;
