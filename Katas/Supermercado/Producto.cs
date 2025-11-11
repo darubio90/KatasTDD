@@ -2,7 +2,7 @@
 {
     public class Producto
     {
-        private string Nombre { get; }
+        public string Nombre { get; }
         public decimal Precio { get; }
 
 
