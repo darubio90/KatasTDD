@@ -57,5 +57,20 @@ namespace Supermercado
             total.Should().Be(0.99m);
             cantidad.Should().Be(2);
         }
+
+
+        [Fact]
+        public void Si_ComproCuatroCepillos_Debe_DarmeCuatroCepilloYCobrarDos()
+        {
+            var producto = Producto.Crear("Cepillo", 0.99m);
+            var compra = Compra.Crear(producto, 3);
+            compra.CalcularTotal();
+
+            decimal total = compra.Total;
+            int cantidad = compra.Cantidad;
+
+            total.Should().Be(1.98m);
+            cantidad.Should().Be(4);
+        }
     }
 }
