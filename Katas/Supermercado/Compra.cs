@@ -40,20 +40,14 @@
             if (Producto.Nombre == "Cepillo")
                 Calcular2X1();
             else
-            {
-                if (Cantidad == 1)
-                    Total = (Cantidad * Producto.Precio) * 0.8m;
-                else if (Cantidad == 0.5m)
-                    Total = Cantidad * Producto.Precio;
-                else
-                {
-                    int parteEntera = (int)Cantidad;
-                    decimal parteDecimal = Cantidad - parteEntera;
-                    Total = (parteEntera * Producto.Precio * 0.8m) + (parteDecimal * Producto.Precio);
-                }
+                Calcular20PorCientoDescuento();
+        }
 
-
-            }
+        private void Calcular20PorCientoDescuento()
+        {
+            int parteEntera = (int)Cantidad;
+            decimal parteDecimal = Cantidad - parteEntera;
+            Total = (parteEntera * Producto.Precio * 0.8m) + (parteDecimal * Producto.Precio);
         }
 
         private void Calcular2X1()
