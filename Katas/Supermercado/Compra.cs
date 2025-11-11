@@ -37,18 +37,16 @@
 
         public void CalcularTotal()
         {
-            if (Producto.Nombre == "Cepillo" && Cantidad == 2)
-            {
-                Total = Producto.Precio * 1;
-            }
-            else if (Cantidad == 1)
-            {
-                Total = Producto.Precio * Cantidad;
-            }
-            else
-            {
-                Total = Producto.Precio * 2;
-            }
+            Calcular2X1();
+        }
+
+        private void Calcular2X1()
+        {
+            const int unidadQueCobraNormal = 1;
+
+            Total = Cantidad % 2 == 0
+                ? Cantidad / 2 * Producto.Precio
+                : ((Cantidad - unidadQueCobraNormal) / 2 * Producto.Precio) + Producto.Precio;
         }
     }
 }

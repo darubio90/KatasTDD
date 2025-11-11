@@ -32,45 +32,21 @@ namespace Supermercado
         }
 
 
-        [Fact]
-        public void Si_CreoCompraUnCepillo_Debe_DarmeElPrecioPorUnidad()
+        [Theory]
+        [InlineData(1, 0.99)]
+        [InlineData(2, 0.99)]
+        [InlineData(3, 1.98)]
+        [InlineData(4, 1.98)]
+        [InlineData(5, 2.97)]
+        [InlineData(6, 2.97)]
+        public void Si_ComproCepillos_Debe_AplicarPromocion2X1(int cantidad, decimal valor)
         {
             var producto = Producto.Crear("Cepillo", 0.99m);
-            var compra = Compra.Crear(producto, 1);
+            var compra = Compra.Crear(producto, cantidad);
             compra.CalcularTotal();
 
-            decimal total = compra.Total;
-
-            total.Should().Be(0.99m);
-        }
-
-        [Fact]
-        public void Si_ComproDosCepillos_Debe_DarmeDosCepilloYCobrarSoloUno()
-        {
-            var producto = Producto.Crear("Cepillo", 0.99m);
-            var compra = Compra.Crear(producto, 2);
-            compra.CalcularTotal();
-
-            decimal total = compra.Total;
-            int cantidad = compra.Cantidad;
-
-            total.Should().Be(0.99m);
-            cantidad.Should().Be(2);
-        }
-
-
-        [Fact]
-        public void Si_ComproCuatroCepillos_Debe_DarmeCuatroCepilloYCobrarDos()
-        {
-            var producto = Producto.Crear("Cepillo", 0.99m);
-            var compra = Compra.Crear(producto, 4);
-            compra.CalcularTotal();
-
-            decimal total = compra.Total;
-            int cantidad = compra.Cantidad;
-
-            total.Should().Be(1.98m);
-            cantidad.Should().Be(4);
+            compra.Total.Should().Be(valor);
+            compra.Cantidad.Should().Be(cantidad);
         }
     }
 }
