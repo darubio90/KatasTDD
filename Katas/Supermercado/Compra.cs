@@ -4,7 +4,7 @@
     {
         private Producto Producto { get; }
         private int Cantidad { get; }
-        public decimal Total { get; internal set; }
+        public decimal Total { get; private set; }
 
         public static Compra Crear(Producto producto, int cantidad)
         {
@@ -34,9 +34,9 @@
                 throw new Exception("La cantidad no puede ser cero");
         }
 
-        internal void CalcularTotal()
+        public void CalcularTotal()
         {
-            throw new NotImplementedException();
+            Total = Producto.Precio * Cantidad;
         }
     }
 }

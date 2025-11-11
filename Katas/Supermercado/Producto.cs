@@ -3,7 +3,7 @@
     public class Producto
     {
         private string Nombre { get; }
-        private decimal Precio { get; }
+        public decimal Precio { get; }
 
 
         public static Producto Crear(string nombre, decimal valor)
