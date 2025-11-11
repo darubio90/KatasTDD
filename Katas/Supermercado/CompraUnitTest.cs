@@ -71,5 +71,16 @@ namespace Supermercado
             compra.Total.Should().Be(1.592m);
             compra.Cantidad.Should().Be(1);
         }
+
+        [Fact]
+        public void Si_ComproUnKiloYMedioDeManzana_Debe_CalcularCadaKiloCon20PorcientoDescuento()
+        {
+            var producto = Producto.Crear("Manzana", 1.99m);
+            var compra = Compra.Crear(producto, 1.5m);
+            compra.CalcularTotal();
+
+            compra.Total.Should().Be(2.587m);
+            compra.Cantidad.Should().Be(1.5m);
+        }
     }
 }
