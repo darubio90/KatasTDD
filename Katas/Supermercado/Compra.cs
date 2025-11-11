@@ -40,7 +40,13 @@
             if (Producto.Nombre == "Cepillo")
                 Calcular2X1();
             else
-                Total = Cantidad * Producto.Precio;
+            {
+                if (Cantidad == 1)
+                    Total = (Cantidad * Producto.Precio) * 0.8m;
+                else
+                    Total = Cantidad * Producto.Precio;
+
+            }
         }
 
         private void Calcular2X1()
