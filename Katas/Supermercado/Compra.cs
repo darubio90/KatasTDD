@@ -2,8 +2,9 @@
 {
     public class Compra
     {
+
         private Producto Producto { get; }
-        private int Cantidad { get; }
+        public int Cantidad { get; }
         public decimal Total { get; private set; }
 
         public static Compra Crear(Producto producto, int cantidad)
