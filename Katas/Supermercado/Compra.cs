@@ -7,7 +7,7 @@
         public decimal Cantidad { get; }
         public decimal Total { get; private set; }
 
-        public static Compra Crear(Producto producto, int cantidad)
+        public static Compra Crear(Producto producto, decimal cantidad)
         {
             LanzarExcepcionSiProductoEsNulo(producto);
             LanzarExcepcionSiCantidadNoEsValida(cantidad);
@@ -26,7 +26,7 @@
             Cantidad = cantidad;
         }
 
-        private static void LanzarExcepcionSiCantidadNoEsValida(int cantidad)
+        private static void LanzarExcepcionSiCantidadNoEsValida(decimal cantidad)
         {
             if (cantidad < 0)
                 throw new Exception("La cantidad no puede ser negativa");

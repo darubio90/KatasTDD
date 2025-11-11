@@ -50,5 +50,16 @@ namespace Supermercado
         }
 
 
+        [Fact]
+        public void Si_ComproMedioKiloDeManzana_Debe_CalcularValor()
+        {
+            var producto = Producto.Crear("Cepillo", 1.99m);
+            var compra = Compra.Crear(producto, 0.5m);
+            compra.CalcularTotal();
+
+            compra.Total.Should().Be(0.995m);
+            compra.Cantidad.Should().Be(0.5m);
+        }
+
     }
 }
