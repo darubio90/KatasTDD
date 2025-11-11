@@ -22,5 +22,13 @@ namespace Supermercado
             excepcion.Should().Throw<Exception>().WithMessage("*La cantidad no puede ser cero");
         }
 
+
+        [Fact]
+        public void Si_CreoCompraConProductoNulo_Debe_Lanzar_Exxcepcion()
+        {
+            var excepcion = () => Compra.Crear(null, 0);
+
+            excepcion.Should().Throw<Exception>().WithMessage("*El producto no puede ser nulo");
+        }
     }
 }
