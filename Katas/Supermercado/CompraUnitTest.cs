@@ -48,5 +48,7 @@ namespace Supermercado
             compra.Total.Should().Be(valor);
             compra.Cantidad.Should().Be(cantidad);
         }
+
+
     }
 }

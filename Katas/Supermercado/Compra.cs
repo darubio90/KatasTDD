@@ -4,7 +4,7 @@
     {
 
         private Producto Producto { get; }
-        public int Cantidad { get; }
+        public decimal Cantidad { get; }
         public decimal Total { get; private set; }
 
         public static Compra Crear(Producto producto, int cantidad)
@@ -20,7 +20,7 @@
                 throw new Exception("El producto no puede ser nulo");
         }
 
-        private Compra(Producto producto, int cantidad)
+        private Compra(Producto producto, decimal cantidad)
         {
             Producto = producto;
             Cantidad = cantidad;
