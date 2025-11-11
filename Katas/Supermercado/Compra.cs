@@ -45,9 +45,9 @@
 
         private void Calcular20PorCientoDescuento()
         {
-            int parteEntera = (int)Cantidad;
-            decimal parteDecimal = Cantidad - parteEntera;
-            Total = (parteEntera * Producto.Precio * 0.8m) + (parteDecimal * Producto.Precio);
+            const decimal porcentajeDescuento = 0.2m;
+            decimal multiplicadorPorcentaje = 1 - porcentajeDescuento;
+            Total = ((int)Cantidad * Producto.Precio * multiplicadorPorcentaje) + ((Cantidad - (int)Cantidad) * Producto.Precio);
         }
 
         private void Calcular2X1()

@@ -50,37 +50,20 @@ namespace Supermercado
         }
 
 
-        [Fact]
-        public void Si_ComproMedioKiloDeManzana_Debe_CalcularValor()
+        [Theory]
+        [InlineData(0.5, 0.995)]
+        [InlineData(1, 1.592)]
+        [InlineData(1.5, 2.587)]
+        [InlineData(2, 3.184)]
+        [InlineData(2.5, 4.179)]
+        public void Si_ComproManzana_Debe_Calcular20PorcientoDescuentoPorCadaKilo(decimal cantidad, decimal precio)
         {
             var producto = Producto.Crear("Manzana", 1.99m);
-            var compra = Compra.Crear(producto, 0.5m);
+            var compra = Compra.Crear(producto, cantidad);
             compra.CalcularTotal();
 
-            compra.Total.Should().Be(0.995m);
-            compra.Cantidad.Should().Be(0.5m);
-        }
-
-        [Fact]
-        public void Si_ComproUnKiloDeManzana_Debe_CalcularValorCon20PorcientoDescuento()
-        {
-            var producto = Producto.Crear("Manzana", 1.99m);
-            var compra = Compra.Crear(producto, 1);
-            compra.CalcularTotal();
-
-            compra.Total.Should().Be(1.592m);
-            compra.Cantidad.Should().Be(1);
-        }
-
-        [Fact]
-        public void Si_ComproUnKiloYMedioDeManzana_Debe_CalcularCadaKiloCon20PorcientoDescuento()
-        {
-            var producto = Producto.Crear("Manzana", 1.99m);
-            var compra = Compra.Crear(producto, 1.5m);
-            compra.CalcularTotal();
-
-            compra.Total.Should().Be(2.587m);
-            compra.Cantidad.Should().Be(1.5m);
+            compra.Total.Should().Be(precio);
+            compra.Cantidad.Should().Be(cantidad);
         }
     }
 }
