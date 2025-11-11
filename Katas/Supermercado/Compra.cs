@@ -43,7 +43,9 @@
                 Calcular20PorCientoDescuento();
             else
             {
-                Total = Cantidad * Producto.Precio * 0.9m;
+                const decimal porcentajeDescuento = 0.1m;
+                decimal multiplicadorPorcentaje = 1 - porcentajeDescuento;
+                Total = ((int)Cantidad * Producto.Precio * multiplicadorPorcentaje) + ((Cantidad - (int)Cantidad) * Producto.Precio);
             }
         }
 
