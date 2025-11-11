@@ -77,5 +77,16 @@ namespace Supermercado
             compra.Total.Should().Be(2.241m);
             compra.Cantidad.Should().Be(1);
         }
+
+        [Fact]
+        public void Si_ComproUnSacoYMedioDeArroz_Debe_CalcularCon10PorcientoDescuentoPorCadaSaco()
+        {
+            var producto = Producto.Crear("Arroz", 2.49m);
+            var compra = Compra.Crear(producto, 1.5m);
+            compra.CalcularTotal();
+
+            compra.Total.Should().Be(3.486m);
+            compra.Cantidad.Should().Be(1.5m);
+        }
     }
 }
