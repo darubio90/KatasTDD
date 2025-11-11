@@ -37,7 +37,10 @@
 
         public void CalcularTotal()
         {
-            Calcular2X1();
+            if (Producto.Nombre == "Cepillo")
+                Calcular2X1();
+            else
+                Total = Cantidad * Producto.Precio;
         }
 
         private void Calcular2X1()
