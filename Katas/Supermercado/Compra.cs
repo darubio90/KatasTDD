@@ -7,6 +7,8 @@
 
         public static Compra Crear(Producto producto, int cantidad)
         {
+            if (producto == null)
+                throw new Exception("El producto no puede ser nulo");
             LanzarExcepcionSiCantidadNoEsValida(cantidad);
             return new Compra(producto, cantidad);
         }
