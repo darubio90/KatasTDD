@@ -78,19 +78,28 @@ namespace WordWrapTest
 
         private static List<string> SepararPalabras(string palabra, int cantidadSaltosLinea)
         {
+            List<string> palabras = SeparaPalabrasPorSaltoDeLinea(palabra, cantidadSaltosLinea);
+
+            return palabras;
+        }
+
+        private static List<string> SeparaPalabrasPorSaltoDeLinea(string palabra, int cantidadSaltosLinea)
+        {
             List<string> palabras = new();
             int inicio = 0;
-            int fin = cantidadSaltosLinea;
-            int cantidadCaracteresQueFaltan = palabra.Length;
 
             while (inicio < palabra.Length)
             {
-                palabras.Add(palabra.Substring(inicio, cantidadCaracteresQueFaltan < cantidadSaltosLinea ? cantidadCaracteresQueFaltan : cantidadSaltosLinea));
+                palabras.Add(ExtraerCadena(palabra, inicio, cantidadSaltosLinea));
                 inicio += cantidadSaltosLinea;
-                cantidadCaracteresQueFaltan -= cantidadSaltosLinea;
             }
 
             return palabras;
+        }
+
+        private static string ExtraerCadena(string palabra, int inicio, int longitud)
+        {
+            return palabra.Substring(inicio, inicio + longitud > palabra.Length ? palabra.Length - inicio : longitud);
         }
 
         private static string AgregarSaltoDeLinea(List<string> palabras)
