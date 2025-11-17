@@ -55,6 +55,13 @@ namespace WordWrapTest
     {
         public static string Wrap(string palabra, int cantidadSaltosLinea)
         {
+            List<string> palabras = SepararPalabras(palabra, cantidadSaltosLinea);
+
+            return AgregarSaltoDeLinea(palabras);
+        }
+
+        private static List<string> SepararPalabras(string palabra, int cantidadSaltosLinea)
+        {
             List<string> palabras = new();
             int inicio = 0;
             int fin = cantidadSaltosLinea;
@@ -65,7 +72,11 @@ namespace WordWrapTest
                 inicio += cantidadSaltosLinea;
             }
 
+            return palabras;
+        }
 
+        private static string AgregarSaltoDeLinea(List<string> palabras)
+        {
             return string.Join("\n", palabras);
         }
     }
