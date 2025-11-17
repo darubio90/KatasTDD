@@ -48,13 +48,25 @@ namespace WordWrapTest
             resultado.Should().Be("wo\nrd");
 
         }
+
     }
 
     public class Word
     {
-        public static string Wrap(string palabra, int v)
+        public static string Wrap(string palabra, int cantidadSaltosLinea)
         {
-            return palabra;
+            List<string> palabras = new();
+            int inicio = 0;
+            int fin = cantidadSaltosLinea;
+
+            while (inicio < palabra.Length)
+            {
+                palabras.Add(palabra.Substring(inicio, palabra.Length < fin ? palabra.Length : fin));
+                inicio += cantidadSaltosLinea;
+            }
+
+
+            return string.Join("\n", palabras);
         }
     }
 }
