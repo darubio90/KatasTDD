@@ -71,20 +71,6 @@ namespace WordWrapTest
     {
         public static string Wrap(string palabra, int cantidadSaltosLinea)
         {
-            List<string> palabras = SepararPalabras(palabra, cantidadSaltosLinea);
-
-            return AgregarSaltoDeLinea(palabras);
-        }
-
-        private static List<string> SepararPalabras(string palabra, int cantidadSaltosLinea)
-        {
-            List<string> palabras = SeparaPalabrasPorSaltoDeLinea(palabra, cantidadSaltosLinea);
-
-            return palabras;
-        }
-
-        private static List<string> SeparaPalabrasPorSaltoDeLinea(string palabra, int cantidadSaltosLinea)
-        {
             List<string> palabras = new();
             int inicio = 0;
 
@@ -94,8 +80,9 @@ namespace WordWrapTest
                 inicio += cantidadSaltosLinea;
             }
 
-            return palabras;
+            return AgregarSaltoDeLinea(palabras);
         }
+
 
         private static string ExtraerCadena(string palabra, int inicio, int longitud)
         {
