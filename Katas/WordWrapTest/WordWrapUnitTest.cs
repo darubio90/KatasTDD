@@ -49,6 +49,21 @@ namespace WordWrapTest
 
         }
 
+        [Fact]
+        public void Si_LaPalabraTiene10CaracteresYElSaltoDeLineaEs3_Debe_HacerSaltoDeLinea()
+        {
+            // arrange
+            string palabra = "abcdefghij";
+
+            // act
+            var resultado = Word.Wrap(palabra, 3);
+
+            //assert
+
+            resultado.Should().Be("abc\ndef\nghi\nj");
+
+        }
+
     }
 
     public class Word
