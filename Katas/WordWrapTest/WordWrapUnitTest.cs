@@ -18,13 +18,28 @@ namespace WordWrapTest
             resultado.Should().Be("");
 
         }
+
+        [Fact]
+        public void Si_LaPalabraTiene4CaracteresYElSaltoDeLineaEs10_Debe_MostrarLaPalabraSinSaltoDeLinea()
+        {
+            // arrange
+            string palabra = "this";
+
+            // act
+            var resultado = Word.Wrap(palabra, 10);
+
+            //assert
+
+            resultado.Should().Be("this");
+
+        }
     }
 
     public class Word
     {
         public static string Wrap(string palabra, int v)
         {
-            return "";
+            return palabra;
         }
     }
 }
