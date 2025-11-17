@@ -64,6 +64,21 @@ namespace WordWrapTest
 
         }
 
+        [Fact]
+        public void Si_LaPalabraDosFrasesYElSaltoDeLineaEs3_Debe_HacerSaltoDeLinea()
+        {
+            // arrange
+            string palabra = "word word";
+
+            // act
+            var resultado = Word.Wrap(palabra, 3);
+
+            //assert
+
+            resultado.Should().Be("wor\nd\nwor\nd");
+
+        }
+
 
     }
 
