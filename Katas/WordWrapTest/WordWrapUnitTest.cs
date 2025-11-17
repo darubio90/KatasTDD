@@ -24,7 +24,7 @@ namespace WordWrapTest
     {
         public static string Wrap(string palabra, int v)
         {
-            throw new NotImplementedException();
+            return "";
         }
     }
 }
