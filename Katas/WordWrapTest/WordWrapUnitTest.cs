@@ -33,6 +33,21 @@ namespace WordWrapTest
             resultado.Should().Be("this");
 
         }
+
+        [Fact]
+        public void Si_LaPalabraTiene4CaracteresYElSaltoDeLineaEs2_Debe_HacerSaltoDeLinea()
+        {
+            // arrange
+            string palabra = "word";
+
+            // act
+            var resultado = Word.Wrap(palabra, 2);
+
+            //assert
+
+            resultado.Should().Be("wo\nrd");
+
+        }
     }
 
     public class Word
