@@ -64,6 +64,7 @@ namespace WordWrapTest
 
         }
 
+
     }
 
     public class Word
@@ -80,11 +81,13 @@ namespace WordWrapTest
             List<string> palabras = new();
             int inicio = 0;
             int fin = cantidadSaltosLinea;
+            int cantidadCaracteresQueFaltan = palabra.Length;
 
             while (inicio < palabra.Length)
             {
-                palabras.Add(palabra.Substring(inicio, palabra.Length < fin ? palabra.Length : fin));
+                palabras.Add(palabra.Substring(inicio, cantidadCaracteresQueFaltan < cantidadSaltosLinea ? cantidadCaracteresQueFaltan : cantidadSaltosLinea));
                 inicio += cantidadSaltosLinea;
+                cantidadCaracteresQueFaltan -= cantidadSaltosLinea;
             }
 
             return palabras;
